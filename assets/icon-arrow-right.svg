@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="16px" height="9px" viewBox="0 0 16 9" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <g id="Group-12">
+    <path d="M0 0L15 0L15 1L0 1L0 0Z" transform="translate(0 3.9748535)" id="Rectangle-3" fill="#FFF0DF" fill-rule="evenodd" stroke="none" />
+    <path d="M0 0L6 0L6 1L0 1L0 0Z" transform="matrix(0.70710665 0.7071069 -0.7071069 0.70710665 11.232178 0)" id="Rectangle-3" fill="#FFF0DF" fill-rule="evenodd" stroke="none" />
+    <path d="M0 0L6 0L6 1L0 1L0 0Z" transform="matrix(0.70710677 -0.70710677 0.70710677 0.70710677 10.5251465 8.242676)" id="Rectangle-3-Copy" fill="#FFF0DF" fill-rule="evenodd" stroke="none" />
+  </g>
+</svg>

@@ -1,0 +1,586 @@
+.product-product-10, .product-product-11 {
+  .product__container {
+    margin-top: 0;
+  }
+  .our-ways-to-serve {
+	    .ways-to-serve-blocks {
+	        margin-top: 15px;
+	        width: 100% !important;
+	        .ways-to-serve-block {
+			    max-width: 50%;
+			    @media only screen and (max-width: 480px) {
+				    max-width: 100%;
+			    }
+			    .block-inner .block-meta p {
+		          font-weight: 100;
+		          text-transform: initial !important;
+		          text-align: left;
+		        }
+			}
+	    }
+
+  }
+
+  .our-ways-to-serve, .our-reviews {
+	    .section-title h2, .section-title h2 {
+	        font-size: 30px;
+	        font-weight: 500;
+	    }
+  }
+  .perfect-for {
+		a.collection_title {
+  	        font-size: 30px;
+  	        font-weight: 500;
+  	    }
+  	    .description ul li {
+		    color: #FFF0DF !important;
+		}
+		.image-element__wrap {
+		    margin-top: -85px;
+		}
+  }
+  .product-template h1.product_name {
+      color: #0053A5;
+  }
+  .divider--dotted--white {
+      margin: 0 30px;
+      width: calc(100% - 60px);
+  }
+  .our-reviews .reviews-blocks .review-block .block-inner .block-meta p {
+      color: #285377;
+  }
+  .overall-benefits .content-box, .our-reviews .section-title h2::after {display: none;}
+  
+  .product-ingredients {
+    &.active-ingredients {
+      .section-heading {
+          border-bottom: 5px dotted #0e498c;
+          padding-bottom: 62px;
+          justify-content: center;
+          h2 {
+              text-transform: uppercase;
+              font-size: 30px;
+          }
+      }
+      .section-title {
+          border-right: none !important;
+          p {
+              font-weight: 100;
+              font-size: 16px !important;
+              + p {
+                  margin-top: 30px;
+              }
+          }
+      }
+      .block-meta h3.title {
+          font-family: 'Airo' !important;
+          font-weight: Normal !important;
+      }
+    }
+    &.inactive-ingredients {
+      background: #FFF8F0;
+      @media only screen and (max-width: 991px) {
+        padding: 0 0 20px !important;
+      }
+      .section-title {
+          border-right: none !important;
+          margin-top: 0;
+          p {
+              font-weight: 100;
+              font-size: 16px !important;
+          }
+      }
+      .product-ingredients-blocks {
+          flex: 0 0 50% !important;
+          padding: 0 30px;
+          @media only screen and (max-width: 991px) {
+              padding: 0;
+          }
+          .product-ingredients-block {
+			.block-inner {
+				align-items: flex-start;
+				.block-thumbnail {
+			    	max-width: 73px!important;
+				}
+				.block-meta {
+					padding-top: 0 !important;
+					h3 {
+						line-height: 1;
+						span {
+							font-family: 'NativePetHand';
+							font-size: 25px;
+						}
+					}
+				}
+			}
+		  }
+      }
+      .block-meta h3.title {
+          font-size: 30px !important;
+          font-family: 'Airo' !important;
+          font-weight: Normal !important;
+      }
+    }
+  }
+}
+
+.product-comparision {
+  .container {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  .flex {
+      display: flex;
+      width: 100%;
+      @media only screen and (max-width: 480px) {
+          flex-wrap: wrap;
+          .column {
+              flex-basis: 100%;
+          }
+      }
+  }
+  .center-block{margin:0 auto;}
+
+  .block-thumbnail img {
+      @media only screen and (max-width: 1220px) {
+          max-width: 100% !important;
+      }
+  }
+  .product-block {
+      padding: 65px 30px;
+      flex: 1;
+  }
+  .product-details {
+      div {
+          font-weight: 100;
+          font-family: 'Airo';
+          + div {
+              margin-top: 75px;
+          }
+      }
+      p {
+          font-size: 16px;
+          margin: 7px 0;
+      }
+      strong {
+          font-size: 29px;
+      }
+  }
+  .product-heading {
+      p {
+          font-family: 'NativePetHand';
+          font-size: 35px;
+          line-height: 1;
+          text-align: center;
+          border-bottom: 5px dotted;
+          max-width: 405px;
+          margin: 0 auto 25px;
+          letter-spacing: -2px;
+          padding-bottom: 20px;
+          font-weight: 500;
+          strong {
+              font-family: 'Airo';
+              font-weight: 500;
+              letter-spacing: 0;
+          }
+      }
+  }
+  .product-ingredient-details {
+      font-size: 16px;
+      color: #fff;
+      font-weight: 100;
+      max-width: 275px;
+      letter-spacing: -1px;
+      margin: auto;
+      margin-bottom: 44px;
+      p:nth-child(1) {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 15px;
+      }
+      em {
+          font-style: normal;
+          font-size: 35px;
+          margin-right: 10px;
+          font-weight: bold;
+      }
+  }
+  .vs-img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 135px;
+      max-width: 50px;
+      @media only screen and (max-width: 480px) {
+        display: none;
+      }
+  }
+}
+
+/* Shop by need slider styles start */
+.custom-stars {
+  display: flex;
+  height: auto;
+  width: 18px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+.collection_slider_div {
+  padding: 50px 0 0 0!important;
+  @media (min-width: 1200px)  {
+    margin-left: calc((100% - 1210px) / 2);
+  }
+  .tabs-thumbs {
+    margin: 0;
+    padding-left: 0;
+    font-size: 18px;
+    .tabs-thumb {
+      display: inline-block;
+      line-height: 3;
+      position: relative;
+      a {
+        display: block;
+/*         padding: 0 1.5rem; */
+        padding: 0 1.2rem;
+        color: #0053a5;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: 2;
+        font-weight: normal;
+      }
+      &.is-active {
+        a {
+          font-weight: bold;
+          &::after, &:hover:after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            height: 4px;
+            width: calc(100% - 2.75rem);
+            background: #619ed5;
+            margin: auto;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
+  .tabs-panels {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    .tabs-panel {
+      display: none;
+    }
+  }
+  .homepage-product-slider .product-wrap{    
+      padding: 10px 0px 0 0px;
+      border-radius: 20px;
+  }
+  .flickity-viewport {
+    min-height: 366px;
+  }
+  h2.title {
+    color: #0053a5;
+    padding: 0 10px;
+    font-family: 'Airo' !important;
+    font-size: 40px;
+    text-align: left;
+  }
+  .featured-collection__description.section {
+    color: #0053a5;
+    font-family: "Airo",serif;
+    text-align: left;
+    p {
+      display: list-item;
+      list-style-type: disc;
+      list-style-position: inside;
+      font-size: 18px;
+    }
+    h2 {
+      color: #0053a5;
+      margin-bottom: 20px;
+      display: block;
+      font-family: "NativePetHand","Regular";
+      line-height: 1;
+      font-size: 1.6em !important;
+      font-weight: 100;
+      width: 360px;
+    }
+  }
+  .product-details {
+    .preheading-slider{
+        line-height: 10px;
+        margin-top: 20px;
+        font-family: "NativePetHand","Regular";
+        font-size: 14px;
+    }
+    .title {
+      color: #0053a5;
+      font-size: 20px;
+      font-weight: normal;
+      font-family: 'Airo' !important;
+      margin-top: 15px;
+    }
+  }
+  .products-slider.slider-gallery {
+    margin: 0 auto;
+    .gallery-cell.visible-3 {
+      background: #FFFBF7;
+      border-radius: 40px;
+      margin: 0 10px;
+      &:nth-child(2) {
+        left: 32.16%;
+      }
+      &:nth-child(3) {
+        left: 64.32%;
+      }
+    }
+    .gallery-cell {
+      display: block;
+      min-height: 100%;
+      .product_image img {
+        max-height: 175px;
+      }
+      .product-info__caption {
+        padding: 0 15px;
+      }
+    }
+  }
+  .products-length-1 .flickity-slider {
+    transform: none !important;
+  }
+  .flickity-slider {
+    transform: translateX(1.76%);
+    left: -15px !important;
+  }
+  .flickity-page-dots, .flickity-button {
+    display: none;
+  } 
+  .collection-slider {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  } 
+  .horizontal-menu {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: 10px 5px;
+    .horizontal-menu-items {
+      width: 100%;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+      -webkit-overflow-scrolling: touch;
+      > .horizontal-menu-item {
+        display: inline-block;
+        line-height: 1;
+        font-family: "Airo",serif;
+        padding: 0 5px;
+        -webkit-animation-name: slidein-animation;
+                animation-name: slidein-animation;
+        -webkit-animation-duration: 350ms;
+                animation-duration: 350ms;
+        -webkit-animation-fill-mode: backwards;
+                animation-fill-mode: backwards;
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+/* Media Queries   */
+@media (min-width: 481px) {
+  .collection_slider_div .products-length-1 .flickity-slider, .collection_slider_div .products-length-2 .flickity-slider, 
+  .collection_slider_div .products-length-3 .flickity-slider{
+    transform: translateX(0) !important;
+    left: 0 !important
+  }
+}
+  
+@media (max-width: 991px){
+  .collection_slider_div.featured_products.product-slider .columns {
+      width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tabs-thumb a {
+      padding: 0 10px;
+  }
+  .tabs-thumb.is-active a::after, .tabs-thumb a:hover:after {
+      width: calc(100% - 15px);
+  }
+}
+  
+@media (max-width: 480px){
+  .collection_slider_div .featured-collection__description.section strong {
+    display: none;
+  }
+  .horizontal-menu .horizontal-menu-items {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+  .collection_slider_div h2.title {
+    padding: 0 18px;
+}
+  .product-wrap {
+      height: 100%;
+  }
+  .products-slider.slider-gallery .gallery-cell.visible-3 {
+      width: calc(70% - 10px);
+  }
+  .collection_slider_div .collection-slider {
+    width: 100vw;
+  }
+}
+
+/*   Custom Code */
+@-webkit-keyframes slidein-animation {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    transform: translateX(160px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slidein-animation {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    transform: translateX(160px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* Shop by need slider styles end */
+
+.index {
+  .our-ways-to-serve.two-column-text {
+    .section-title h2, .ways-to-serve-blocks .ways-to-serve-block .block-inner .block-meta p {
+        color: #0053a5  !important;
+    }
+    .divider--dotted--white {
+/*         border-color: #fff0df !important; */
+    }
+    .section-title h2 {
+        font-size: 30px;
+        @media only screen and (max-width: 480px) {
+            font-size: 20px
+        }
+        span {
+            font-size: 55px;
+            font-family: 'NativePetHand';
+            @media only screen and (max-width: 480px) {
+                font-size: 32px
+            }
+        }
+    }
+  }
+}
+
+.overall-benefits {
+  &.hp h3 {
+    font-family: NativePetHand,Airo,serif!important;
+    font-size: 3.1em!important;
+    letter-spacing: -1px!important;
+  }
+  &.simple-reason {
+    padding: 30px 0;
+    .benefits-row {
+      p em {
+        text-transform: initial;
+        font-style: normal;
+      }
+      .col-4 {
+        width: 100% !important;
+        padding: 15px 30px;
+      }
+    }
+    .content-box {
+      margin-bottom: 30px;
+      h3 {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 1.55px;
+        margin-bottom: 0;
+        color: #fff0df;
+      }
+    }
+    .container {
+      max-width: 1080px;
+    }
+    p {
+      strong {
+        font-size: 26px;
+        font-weight: 500;
+      }
+      + p {
+        margin-top: 10px;
+        font-size: 16px !important;
+        letter-spacing: 0;
+        text-transform: initial;
+      }
+    }
+  }
+  .simple-reason-icons {
+    margin-bottom: 10px!important;
+  }
+}
+
+.article-newblog {
+  .blog-post-section {
+    .author_block {
+      margin: 30px 0 15px;
+      .author_img {
+        margin: 0;
+        img {
+          width: 150px;
+          max-width: 150px;
+          margin-right: 30px;
+          @media (max-width: 767px) {
+            margin: 0 auto 30px !important;
+          }
+        }
+      }
+      .author_details {
+        h3 {
+          padding: 0 !important;
+        }
+        h4 {
+          padding-top: 0;
+          font-size: 18px;
+        }
+        p + p {
+          margin-top: 20px;
+        }
+      }
+    }
+    #pagecontent {
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+
+
+

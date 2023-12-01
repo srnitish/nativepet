@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="23px" height="19px" viewBox="0 0 23 19" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <g id="Tick">
+    <path d="M0 0L10 0L10 4L0 4L0 0Z" transform="matrix(0.70710665 0.7071069 -0.7071069 0.70710665 2.8283691 8.180542)" id="Rectangle-6" fill="#609ED5" fill-rule="evenodd" stroke="none" />
+    <path d="M1.1982e-15 0L21.5849 0L21.5849 4L1.1982e-15 4L1.1982e-15 0Z" transform="matrix(0.70710677 -0.70710677 0.70710677 0.70710677 4.5566406 15.262817)" id="Rectangle-6-Copy" fill="#609ED5" fill-rule="evenodd" stroke="none" />
+  </g>
+</svg>
