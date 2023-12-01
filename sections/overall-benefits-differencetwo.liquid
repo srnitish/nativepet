@@ -1,0 +1,97 @@
+{% comment %}
+** Overall Benefits - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+
+<section class="overall-benefits hp" style="background:{{ section.settings.bg_color }}; color:{{ section.settings.bg_color }}">
+    <div class="container">
+    	<style>.overall-benefits .content-box p {color: {{ section.settings.main_color }} !important}</style>
+        <div class="content-box">
+            <div class="content-box__inner">
+                <h4 style="color: {{ section.settings.main_color }}">{{ section.settings.pretitle }}</h4>
+                <h2 style="color: {{ section.settings.main_color }}">{{ section.settings.title }}</h2>
+                <div style="color: {{ section.settings.main_color }} !important">{{ section.settings.description }}</div>
+            </div>
+        </div> 
+        <div class="benefits-row" data-flickity='{ "cellAlign": "left", "contain": true, "watchCSS": true, "prevNextButtons": false}'>
+          {% for block in section.blocks %}
+	          <div class="col-4">
+                  <div class="icon-wrapper" style="color: {{ block.settings.text_color }}">
+                    <img src="{{ block.settings.icon_png | img_url:'master' }}" alt="">
+                  </div>
+                  <div style="color: {{ block.settings.text_color }} !important">{{ block.settings.benefit-title }}</div>
+              </div> 
+          {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Header",
+  "class": "overall-benefits-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Preheading",
+      "default": "Additional Benefits"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading",
+      "default": "Keep it Simple."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "description"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color"
+    },
+    {
+      "type": "color",
+      "id": "main_color",
+      "label": "Section Text Color",
+      "default": "#0053A5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit-block",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_png",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "benefit-title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Page Header DifferenceTwo",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

@@ -1,0 +1,82 @@
+{% comment %}
+** Ingredients Alternate - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+<section class="product-ingredients product-ingredients--alt">
+    <div class="container">
+        <div class="section-title">
+            <h2>3 simple ingredients. <br>1 magical formula.</h2>
+        </div>
+        <div class="divider divider--dotted divider--dotted--cyan"></div>
+
+        <div class="product-ingredients-blocks">
+            <div class="product-ingredients-block">
+                <div class="block-inner">
+                    <div class="block-thumbnail">
+                        {{ 'igred-1.png' | asset_url | img_tag }}
+                    </div>
+                    <div class="block-meta text-orange">
+                        <h3 class="text-uppercase">PLANT BASED <br>PUMPKIN POWDER</h3>
+                        <p>60% OF THE FORMULA</p>
+                        <div class="divider divider--dotted divider--dotted--orange"></div>
+                        <h3>Pumpkin Powder contains 60% soluble and 40% insoluble fibers.</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients-block">
+                <div class="block-inner">
+                    <div class="block-thumbnail">
+                        {{ 'igred-2.png' | asset_url | img_tag }}
+                    </div>
+                    <div class="block-meta text-green">
+                        <h3 class="text-uppercase">ORGANIC <br>PUMPKIN SEED POWDER</h3>
+                        <p>33% OF THE FORMULA</p>
+                        <div class="divider divider--dotted divider--dotted--green"></div>
+                        <h3>Pumpkin Seeds contains 25% and 75% insoluble fibers.</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients-block">
+                <div class="block-inner">
+                    <div class="block-thumbnail">
+                        {{ 'igred-3.png' | asset_url | img_tag }}
+
+                    </div>
+                    <div class="block-meta text-red">
+                        <h3 class="text-uppercase">ORGANIC <br>APPLE POWDER</h3>
+                        <p>7% OF THE FORMULA</p>
+                        <div class="divider divider--dotted divider--dotted--red"></div>
+                        <h3>Apple Powder contains 30% and 70% insoluble fibers.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider divider--dotted divider--dotted--cyan"></div>
+
+        <div class="content-box">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        </div>
+
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ingredients Alternate",
+  "class": "ingredients-alternate-section",
+  "settings": [
+  ],
+  "presets": [{
+    "name": "Ingredients Alternate",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

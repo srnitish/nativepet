@@ -1,0 +1,100 @@
+{% comment %}
+** Best Sellers - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+<section class="best-sellers">
+  
+  
+  
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ section.settings.title }}</h2>
+        </div>
+        <div class="seller-blocks">
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              <div class="seller-block">
+                <div class="block-inner">
+                  <div class="block-thumbnail">
+                    {{ block.settings.image | img_url: 'master' | img_tag }}
+                  </div>
+                  <div class="block-meta">
+                    <h3 style="text-transform: uppercase">{{ block.settings.title }}</h3>
+                    {{ block.settings.text }}
+                    <div class="btn-wrap">
+                      <a href="{{ block.settings.link }}" class="action_button highlighted--true highlighted--true--white">{{ block.settings.button_label }}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "(NP) Featured Collections",
+  "class": "best-sellers-section featured-collection-section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Featured product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image",
+          "info": "400 x 400px recommended"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Highly effective, functional treats without the funny business.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Homepage collection",
+    "category": "Collection",
+    "settings": {
+
+    }
+  }]
+}
+{% endschema %}
+
+
+

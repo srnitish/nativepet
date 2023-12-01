@@ -1,0 +1,175 @@
+{% comment %}
+** Single featured collection - homepage partial **
+- Draggable section
+{% endcomment %}
+
+{% include 'include-collection-slider' %}
+
+{% schema %}
+    {
+		"name" : "collection_tab",
+		"class": "featured-collection-section",
+		"max_blocks": 6,
+		"settings" :[
+						{
+                          "type": "image_picker",
+                          "id": "image",
+                          "label": "Image",
+                          "info": "1024 x 1024px recommended"
+                        },
+						{
+                          "type": "text",
+                          "id": "title",
+                          "label": "Header Name",
+                          "default": "SHOP BY NEED"
+                        },
+                        {
+                          "type": "collection",
+                          "id": "collection1",
+                          "label": "BELLY and BLADDER"
+                        },
+						{
+                          "type": "collection",
+                          "id": "collection2",
+                          "label": "MOBILITY"
+                        },
+						{
+                          "type": "collection",
+                          "id": "collection3",
+                          "label": "SKIN and COAT"
+                        },
+						{
+                          "type": "collection",
+                          "id": "collection4",
+                          "label": "EVERYDAY WELLNESS"
+                        },
+						{
+                          "type": "collection",
+                          "id": "collection5",
+                          "label": "CHILL TIME CHEWS"
+                        },
+                      	{
+                          "type": "collection",
+                          "id": "collection6",
+                          "label": "MEAL ENHANCERS"
+                        },
+                        {
+                          "type": "radio",
+                          "id": "collection_style",
+                          "label": "Collection layout",
+                          "default": "grid",
+                          "options": [
+                            {
+                              "value": "slider",
+                              "label": "Slider"
+                            },
+                            {
+                              "value": "grid",
+                              "label": "Grid"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "header",
+                          "content": "Products"
+                        },
+                        {
+                          "type": "range",
+                          "id": "products_per",
+                          "label": "Products per row",
+                          "min": 2,
+                          "max": 7,
+                          "step": 1,
+                          "default": 3
+                        },
+                        {
+                          "type": "range",
+                          "id": "products_limit",
+                          "label": "Limit products",
+                          "min": 2,
+                          "max": 50,
+                          "step": 1,
+                          "default": 9
+                        }
+					],
+		"blocks" : [
+				{
+					"type": "text",
+					"name": "Category Tab Name",
+					
+		"settings" :[
+							{
+								"type": "text",
+                                "id": "tab",
+                                "label": "Tab Name"										
+							},
+							{
+                            "type": "text",
+                            "id": "heading",
+                            "label": "Heading"
+                        	},
+							{
+                            "type": "checkbox",
+                            "id": "collection_description",
+                            "label": "Show Description"
+							},
+							{
+                            "type": "richtext",
+                            "id": "collection_content",
+                            "label": "Show Content"
+							},
+							
+							
+
+							{
+                            "type": "radio",
+                            "id": "collection_style",
+                            "label": "Collection layout",
+                            "default": "grid",
+                            "options": [
+                              {
+                                "value": "slider",
+                                "label": "Slider"
+                              },
+                              {
+                                "value": "grid",
+                                "label": "Grid"
+                              }
+                            ]
+                          },
+						{
+                          "type": "header",
+                          "content": "Products"
+                        },
+						{
+                        "type": "range",
+                        "id": "products_per",
+                        "label": "Products per row",
+                        "min": 2,
+                        "max": 7,
+                        "step": 1,
+                        "default": 3
+                      },
+						{
+                      "type": "range",
+                      "id": "products_limit",
+                      "label": "Limit products",
+                      "min": 2,
+                      "max": 50,
+                      "step": 1,
+                      "default": 9
+                    }
+                  ]
+				
+				}
+			],
+	  "presets": [{
+    "name": "Collection Slider",
+    "category": "Collection",
+    "settings": {
+
+    }
+  }]
+    }
+{% endschema %}
+

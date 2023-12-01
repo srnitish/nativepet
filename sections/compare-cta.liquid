@@ -1,0 +1,78 @@
+{% comment %}
+** Compare CTA - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+
+<section class="compare-cta">
+    <div class="compare-cta__wrapper">
+        <div class="content-box">
+            <div class="content-box__inner">
+                <h2>{{ section.settings.title }}</h2>
+                <p>{{ section.settings.description }}</p>
+                {% if section.settings.button_url %}
+                 <div class="btn-wrap">
+                    <a href="{{ section.settings.button_url }}" class="action_button highlighted--true highlighted--true--white">{{ section.settings.button_text }}</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .compare-cta {
+    background-color: {{ section.settings.background-color }};
+  }
+  #shopify-section-{{ section.id }} .compare-cta .content-box h2, #shopify-section-{{ section.id }} .compare-cta .content-box p {
+    color: {{ section.settings.text-color }};  
+  }
+</style>
+
+{% schema %}
+{
+  "name": "(NP) Promo Banner",
+  "class": "compare-cta-section",
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "COMPARE NATIVE PET TO YOUR FOOD"
+      },
+	  {
+        "type": "text",
+        "id": "description",
+        "label": "Description",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+      },
+	  {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Get Started"
+      },
+      {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button URL"
+      },
+      {
+        "type": "color",
+        "id": "background-color",
+        "label": "Background Color",
+        "default": "#0e498c"
+      },
+	  {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text Color",
+        "default": "#fff0df"
+      }
+  ]
+
+}
+{% endschema %}

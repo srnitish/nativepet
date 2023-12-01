@@ -1,0 +1,66 @@
+{% comment %}
+** Page Banner - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+<section class="page-banner">
+    <div class="page-banner__inner">
+        <div class="col-left">
+        {% if section.settings.banner_image != blank %}
+          <img src="{{ section.settings.banner_image | img_url: 'original' }}"  class="img-fluid">
+
+            {% endif %}
+        </div>
+        <div class="col-right" style=" {% if section.settings.banner_image != blank %} background-color:{{section.settings.banner_bg_color}} {% endif %}">
+            <div class="content-box">
+                {% if section.settings.banner_heading != blank %}
+                <h1>{{ section.settings.banner_heading }}</h1>
+                {% endif %}
+                {% if section.settings.banner_description != blank %}
+                <p>{{ section.settings.banner_description }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Banner",
+  "class": "page-banner-section",
+  "settings": [
+         {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner Image",
+          "info": "688 x 366px recommended"
+         },
+         {
+          "type": "color",
+          "id": "banner_bg_color",
+          "label": "Banner background color"
+        },
+         {
+          "type": "text",
+          "id": "banner_heading",
+          "label": "Banner Heading"
+          
+        },
+          {
+         "type": "textarea",
+          "id": "banner_description",
+          "label": "Banner Description"
+         }
+
+  ],
+  "presets": [{
+    "name": "Page Banner",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+{% comment %}
+** Ingredients - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+{% unless section.settings.hide_section %}
+
+<section class="product-ingredients {% if section.settings.full_width %}full-width{% endif %}">
+	{% if section.settings.full_width %}
+		<div class="section-title">
+			{% if section.settings.title %}
+	        <h2>{{ section.settings.title }}</h2>
+	        {% endif %}
+	    </div>
+	{% endif %}    
+    <div class="container">
+    
+    	
+    
+        <div class="section-title {% if section.settings.full_width %}omega{% endif %}">
+            {% unless section.settings.full_width %}
+	            {% if section.settings.title %}
+		            <h2>{{ section.settings.title }}</h2>
+	            {% endif %}
+	        {% endunless %}
+            {% if section.settings.description %}
+            	<p>{{ section.settings.description }}</p>
+            {% endif %}
+        </div>
+
+        <div class="product-ingredients-blocks {% if section.settings.full_width %}alpha{% endif %}">
+            {% for block in section.blocks %}
+            <div class="product-ingredients-block">
+                <div class="block-inner">
+                  {% if block.settings.ingredient_image != blank %}
+                    <div class="block-thumbnail">
+                        <img src="{{ block.settings.ingredient_image | img_url:'master' }}" alt="">
+                    </div>
+                  {% endif %}
+
+                  {% assign text_color = '' %}
+                  {% assign text_color_alpha = block.settings.text_color | color_extract: 'alpha'  %}
+                  {% if text_color_alpha > 0 %}
+                    {% assign text_color = block.settings.text_color %}
+                  {% else %}
+                    {% assign text_color = '#e98435' %}
+                  {% endif %}
+                  <div class="block-meta" style="color: {{ text_color }};">
+                    {% if block.settings.benefit_title != blank %}
+                      <h3 class="text-uppercase title">{{ block.settings.benefit_title }}</h3>
+                      <h4 class="text-uppercase subtitle">{{ block.settings.benefit_subtitle }}</h4>
+                    {% endif %}
+
+                    {% if block.settings.subtitle != blank %}
+                      <p>{{ block.settings.subtitle }}</p>
+                    {% endif %}
+
+                    {% if block.settings.description != blank %}
+                      <div class="block-meta__footer">
+                        <h3>{{ block.settings.description }}</h3>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>
+    </div>
+</section>
+
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Ingredients",
+  "class": "ingredients-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width?",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient-block",
+      "name": "Ingredients",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "ingredient_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Heading",
+          "default": "PLANT BASED"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Subheading",
+          "default": "PUMPKIN POWDER"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subheading",
+          "default": "60% OF THE FORMULA"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Pumpkin Powder contains 60% soluble and 40% insoluble fibers."
+        },
+        {
+          "type": "richtext",
+          "id": "detailed_description",
+          "label": "Detailed description",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Ingredients",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+{% comment %}
+** Image With Text - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+{% unless section.settings.hide_section %}
+<section class="image-with-text-alt" style="background:{{ section.settings.bg_color }}; color:{{ section.settings.bg_color }}">
+    <div class="image-with-text-alt__wrapper">
+        <div class="img-wrapper">
+            <img data-src="{{ section.settings.image-thumbnail | img_url: 'master' }}" class="lazyload" />
+        </div>
+        <div class="content-box">
+            <div class="content-box__inner">
+                <h2>{{ section.settings.title }}</h2>
+                <p>{{ section.settings.description }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "(NP) Image With Text",
+  "class": "image-with-text-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image-thumbnail",
+      "label": "Select Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "description"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color"
+    }
+  ],
+  "presets": [{
+    "name": "Image With Text",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

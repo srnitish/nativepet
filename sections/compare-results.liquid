@@ -1,0 +1,95 @@
+{% comment %}
+** Compare Products - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+<section class="compare-result">
+    <div class="container">
+        <div class="section-header text-center">
+            {% if section.settings.heading != blank %}
+                <h2>{{ section.settings.heading }}</h2>
+            {% endif %}
+
+            {% if section.settings.description %}
+                <p>{{ section.settings.description }}</p>
+            {% endif %}
+        </div>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <th>{{ section.settings.th_native_product }}</th>
+                    <th>{{ section.settings.th_competitor_product }}</th>
+                </thead>
+                <tbody id="table-content">
+                    <tr>
+                        {% comment %} <td>
+                            <div class="d-flex">
+                                <div class="icon"> {{ 'icon-check-mark.svg' | asset_url | img_tag }} </div>
+                                <div class="content">
+                                    Lorem ipsum dolor sit amet consect
+                                    etur adipiscing elit
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="d-flex">
+                                <div class="icon"> {{ 'icon-cross.svg' | asset_url | img_tag }} </div>
+                                <div class="content">
+                                    Lorem ipsum dolor sit amet consect
+                                    etur adipiscing elit
+                                </div>
+                            </div>
+                        </td> {% endcomment %}
+                    </tr>
+                </tbody>
+            </table>
+            {% if section.settings.btn_url != blank and section.settings.btn_label != blank %}
+                <a href="{{ section.settings.btn_url }}" class="button button--blue">{{ section.settings.btn_label }}</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Compare Result",
+  "class": "compare-result-section",
+  "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Table heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Table description"
+        },
+        {
+          "type": "text",
+          "id": "th_native_product",
+          "label": "Column title",
+          "info": "Column title for Native pet product",
+          "default": "NATIVE PET"
+        },
+        {
+          "type": "text",
+          "id": "th_competitor_product",
+          "label": "Column title",
+          "info": "Column title for competitor product",
+          "default": "PURINA"
+        }
+    ],
+    "presets": [{
+        "name": "Compare Result",
+        "category": "Content",
+        "settings": {
+        }
+    }]
+}
+{% endschema %}

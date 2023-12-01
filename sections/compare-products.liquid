@@ -1,0 +1,127 @@
+{% comment %}
+** Compare Products - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+<section id="section-{{ section.id }}" class="compare-products" >
+  <div class="compare-products__row">
+    <div class="col-left">
+      <div class="product-selection">
+        <select name="selected_native_product" id="selected_native_product">
+          <option value="" data-product-sku="">select a product to compare</option>
+          {% for block in section.blocks %}
+            {% if block.type == 'nativepet' %}
+              {%- assign product = all_products[block.settings.product] -%}
+              <option value="{{ product.handle }}" data-product-sku="{{ product.id }}">{{ product.title | escape }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      {% for block in section.blocks %}
+        {% if block.type == 'nativepet' %}
+          {%- assign product = all_products[block.settings.product] -%}
+          <div class="product-showcase" data-product-sku="{{ product.id }}" data-list-items="{{ block.settings.product_features }}">
+            <img src="{{ product.featured_image | img_url: '800x' }}"/>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="col-right">
+      <div class="product-selection">
+        <select name="selected_competitor_product" id="selected_competitor_product">
+          <option value="" data-product-sku="">select a product to compare</option>
+          {% for block in section.blocks %}
+            {% if block.type == 'competitor' %}
+              {%- assign product = all_products[block.settings.product] -%}
+              <option value="{{ block.settings.product_title | handleize }}" data-product-sku="{{ product.id }}">{{ block.settings.product_title }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      {% for block in section.blocks %}
+        {% if block.type == 'competitor' %}
+          {%- assign product = all_products[block.settings.product] -%}
+          <div class="product-showcase" data-product-sku="{{ product.id }}" data-list-items="{{ block.settings.product_features }}">
+            <img src="{{ block.settings.image | img_url: '800x' }}"/>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="vs-text">VS</div>
+  </div>
+</section>
+
+<style>
+  #section-{{ section.id }} .product-showcase { display: none; }
+</style>
+
+{% schema %}
+{
+  "name": "Compare Products",
+  "class": "compare-products-section",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "nativepet",
+      "name": "Native Pet Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Select product by Native Pet."
+        },
+        {
+          "type": "textarea",
+          "id": "product_features",
+          "label": "Product features",
+          "info": "Enter product features to display in comparison table. After each list item, add [/list_item] to indicate end of item."
+        }
+      ]
+    },
+    {
+      "type": "competitor",
+      "name": "Competitor Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Add image for competitor's product."
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product title",
+          "info": "Enter competitor product's title"
+        },
+        {
+          "type": "textarea",
+          "id": "product_features",
+          "label": "Product features",
+          "info": "Enter product features to display in comparison table. After each list item, add [/list_item] to indicate end of item."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Select product by Native Pet to which this product is a competitor."
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Compare Products",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

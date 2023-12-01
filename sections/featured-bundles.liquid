@@ -1,0 +1,139 @@
+{% comment %}
+** Bundles - Landing Page **
+{% endcomment %}
+
+<section class="shop-supplements">
+    <div class="shop-supplements__wrapper">
+      {% for block in section.blocks %}
+
+        <div class="bundle-row">
+            <div class="content">
+            	<div class="row-header">
+	                <h2>{{ block.settings.heading }}</h2>
+	                <p>{{ block.settings.subheading }}</p> 
+                </div>
+				<div class="supplements-products">
+
+					{% assign c = collections[block.settings.collection_id] %}
+
+
+					{% if c.products.count > 0 %}
+ 
+
+						<div class="text-center">
+							<form class="bundle">
+								<div class="th_pb_innercode th_pb_wf">
+									<div class="th_pb_title th_pb_wf">
+										<h4>{{ c.title }}</h4>
+									</div>
+									<div class="th_pb_list th_pb_list_layout_1 th_pb_wf">
+										<ul class="th_pb_list_ul th_pb_list_ul_index_2">
+											{% for product in c.products %}
+												{% assign variant = None %}
+												{% if product.variants.size == 1 %}
+													{% assign variant = product.variants.first %}
+												{% elsif c.metafields.bundle[product.handle] %}
+													{% assign searchID = c.metafields.bundle[product.handle] | plus: 0 %}
+													{% for v in product.variants %}
+														{% if v.id == searchID %}
+															{% assign variant = v %}
+															{% break %}
+														{% endif %}
+													{% endfor %}
+												{% endif %}
+
+												{% if variant == None %}
+													{% continue %}
+												{% endif %}
+
+												<li class="li_product_list">
+													<input type="hidden" name="bundle[{{ product.id }}" value="{{ variant.id }}" />
+													<div class="th_pb_list_content th_pb_wf">
+														<figure class="th_product_img th_pb_wf">
+															<a href="/products/{{ product.handle }}">
+															<img
+																src="{% if variant.image %}{{ variant.image | img_url: '600x' }}{% else %}{{ product.featured_image | img_url: '600x' }}{% endif %}"
+																alt="{{ product.title }}" />
+															</a>
+														</figure>
+														<div class="th_pb_list_pro_detail th_pb_wf">
+															<h6 class="th_pb_pro_title th_pb_wf">
+																<a href="/products/{{ product.handle }}">
+																	{{ product.title }}
+																</a>
+															</h6>
+															{% unless variant.title == 'Default Title' %}
+															<div class="th_pb_variants_section th_pb_wf">
+																<div class="th_pb_wf th_pb_fix_variant_val">
+																	<span>{{ variant.title }}</span>
+																</div>
+															</div>
+															{% endunless %}
+														</div>
+													</div>
+												</li>
+											{% endfor %}
+										</ul>
+										<div class="th_pb_addtocart_section th_pb_wf">
+											<div class="th_pb_add_to_cart btn button">
+												<button type="submit">
+													<span class="button_text">Add {{ c.title }}</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+
+					{% endif %}
+
+				</div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Featured Bundles",
+  "class": "bundles-section",
+  "settings": [
+    ],
+	"blocks": [
+    {
+      "type": "featured-bundle",
+      "name": "Featured Bundle",
+      "settings": [
+	      {
+	        "type": "text",
+	        "id": "heading",
+	        "label": "Heading",
+	        "default": "ROVER ON SUPPLEMENTS"
+	      },
+	      {
+	        "type": "text",
+	        "id": "subheading",
+	        "label": "Subheading",
+	        "default": "Native Pet supplements were developed to improve your pet’s overall wellbeing through the industry’s most effective formulas."
+	      },
+		  {
+	        "type": "text",
+	        "id": "product_heading",
+	        "label": "Products Heading",
+	        "default": "Sophie’s supplements:"
+	      },
+		  {
+	        "type": "collection",
+	        "id": "collection_id",
+	        "label": "Bundle Collection"
+	      }
+      ]
+    }
+  ]
+  }
+
+{% endschema %}
