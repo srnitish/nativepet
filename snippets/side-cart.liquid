@@ -1,0 +1,97 @@
+<!-- RPS Side Cart -->
+<div id="side-cart"></div>
+{{ 'side-cart.min.js' | asset_url | script_tag }}
+<script>
+	var sideCart = window.sideCart || [];
+	sideCart.push('set-config', {
+		shopify_domain: '{{ shop.permanent_domain }}',
+		empty_cart_top_promo: '{{ settings.empty_cart_top_promo | replace: "'", "\\'" }}',
+
+		/*
+        empty_cart_product_1: {{ all_products[settings.empty_cart_product_1] | json }},
+        empty_cart_product_2: {{ all_products[settings.empty_cart_product_2] | json }},
+        empty_cart_collection_1: {{ collectiodns[settings.empty_cart_collection_1] | json }},
+
+        empty_cart_product_3: {{ all_products[settings.empty_cart_product_3] | json }},
+        empty_cart_product_4: {{ all_products[settings.empty_cart_product_4] | json }},
+        empty_cart_collection_2: {{ collections[settings.empty_cart_collection_2] | json }},
+        */
+
+		empty_cart_content: [
+			{
+				collection: {{ settings.empty_cart_collection_1 | json}},
+				title: "{{ settings.empty_cart_title_1 | replace: "'", "\\'" }}",
+				image: "{{ settings.empty_cart_image_1 | img_url: '250x' }}"
+			},
+			{
+				collection: {{ settings.empty_cart_collection_2 | json}},
+				title: "{{ settings.empty_cart_title_2 | replace: "'", "\\'" }}",
+				image: "{{ settings.empty_cart_image_2 | img_url: '250x' }}"
+			},
+			{
+				collection: {{ settings.empty_cart_collection_3 | json}},
+				title: "{{ settings.empty_cart_title_3 | replace: "'", "\\'" }}",
+				image: "{{ settings.empty_cart_image_3 | img_url: '250x' }}"
+			}
+		],
+
+		empty_cart_default_promo: '{{ settings.empty_cart_default_promo | replace: "'", "\\'" }}',
+		free_shipping_text: '{{ settings.free_shipping_text | replace: "'", "\\'" }}',
+
+		copy: {
+			cart_one_item: '{{ settings.cart_one_item_label | replace: "'", "\\'" }}',
+			cart_two_item: '{{ settings.cart_two_item_label | replace: "'", "\\'" }}',
+			cart_three_item: '{{ settings.cart_three_item_label | replace: "'", "\\'" }}',
+			only_subscription: '{{  settings.cart_only_subscription_label | replace: "'", "\\'" }}'
+		},
+		discount: {
+			map: {{ settings.discount_mapping | json }}.split("\n"),
+			banner: {{ settings.discount_banner_text | json }}
+		}
+	});
+	sideCart.push('set-cart', {{ cart | json }});
+
+	sideCart.push('set-events', {
+		open: function() {  },
+		close: function() {  },
+		updateCount: function(count) {
+			// document.querySelector('li.cart a.icon-cart span').textContent = count;
+		}
+	});
+	// sideCart.push('set-upsells', {{ collections['sidecart-upsells'].products | json }});
+
+    {% capture upsell-json %}
+    	{% render 'upsell-json' %}
+    {% endcapture %}
+	try
+	{
+        {% comment %}
+		JSON uses quotation marks, and none of the data should have apostrophes, so the code below should work for all situations
+        {% endcomment %}
+		var upsellJSON = JSON.parse('{{ upsell-json | strip_newlines }}');
+		sideCart.push('set-upsell-json', upsellJSON);
+	}
+	catch (e)
+	{
+		//
+	}
+
+
+
+	$(document).ready(function()
+	{
+		var sideCart = window.sideCart || [];
+		$('a[href="#cart"]').on('click', function(e)
+		{
+			e.preventDefault();
+			sideCart.push('open');
+		});
+
+		// Open side cart on load if url has #cart
+		if (window.location.hash.toLowerCase() == '#cart')
+		{
+			sideCart.push('open');
+		}
+	})
+</script>
+<!-- End RPS Side Cart -->

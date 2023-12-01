@@ -1,0 +1,116 @@
+{% for block in section.blocks %} 
+{% if type == 'block' %}
+  {% assign title = block.settings.title %}
+  {% assign settingHeading = block.settings.heading %}
+  {% assign settingCollectionss = block.settings.collection %}
+  {% assign collection_style = block.settings.collection_style %}
+  {% assign collection_description = block.settings.collection_description %}
+  {% assign products_per = block.settings.products_per %}
+  {% assign products_limit = block.settings.products_limit %}
+{% else %}
+  {% assign title = section.settings.title %}
+  {% assign settingCollection1 = section.settings.collection1 %}
+  {% assign settingCollection2 = section.settings.collection2 %}
+  {% assign settingCollection3 = section.settings.collection3 %}
+  {% assign settingCollection4 = section.settings.collection4 %}
+  {% assign settingCollection5 = section.settings.collection5 %}
+  {% assign settingCollection6 = section.settings.collection6 %}
+  {% assign collection_style = section.settings.collection_style %}
+  {% assign collection_description = section.settings.collection_description %}
+  {% assign products_per = section.settings.products_per %}
+  {% assign products_limit = section.settings.products_limit %}
+{% endif %}
+  	{% assign limit = products_limit %}
+  	{% if collection_style == 'slider' %}
+    {% assign col1 = settingCollection1 | handleize %}
+    {% assign products1 = collections[col1].products %}
+    {% assign product_count = collections[col1].all_products_count %}
+	{% assign col2 = settingCollection2 | handleize %}
+    {% assign products2 = collections[col2].products %}
+    {% assign product_count = collections[col2].all_products_count %}
+	{% assign col3 = settingCollection3 | handleize %}
+    {% assign products3 = collections[col3].products %}
+    {% assign product_count = collections[col3].all_products_count %}
+	{% assign col4 = settingCollection4 | handleize %}
+    {% assign products4 = collections[col4].products %}
+    {% assign product_count = collections[col4].all_products_count %}
+	{% assign col5 = settingCollection5 | handleize %}
+    {% assign products5 = collections[col5].products %}
+    {% assign product_count = collections[col5].all_products_count %}
+	{% assign col6 = settingCollection6 | handleize %}
+    {% assign products6 = collections[col6].products %}
+    {% assign product_count = collections[col6].all_products_count %}
+    {% assign per_slide = products_per %}
+  {% endif %}
+  {% if settingCollection1 and settingCollection2 and settingCollection3 and settingCollection4  and settingCollection5 and settingCollection6== blank %}
+    {%- assign section_onboarding = true -%}
+    {% comment %}assign product length to be selected limit for onboarding{% endcomment %}
+    {% assign products_length = products_limit | plus: 0 %}
+  {% else %}
+    {%- assign section_onboarding = false -%}
+  {% endif %}
+{%endfor%}
+
+<div class="collection_slider_div featured_products product-{{ collection_style }}">
+  <div class="sixteen columns center homepage_content">
+        <h2 class="title">{{ title }}</h2>
+  </div>
+     <div class="tabs horizontal-menu">
+      <ul class="tabs-thumbs horizontal-menu-items">
+        {%for block in section.blocks %}
+          <li class="tabs-thumb horizontal-menu-item">
+            <a>{{block.settings.tab}}</a> 
+        </li>
+         {%endfor%}
+      </ul>
+      <ul class="tabs-panels">
+        {% for block in section.blocks%}
+		<li class="tabs-panel">
+			<div class="sixteen row collection-slider">
+				<div class="five columns center homepage_content slider-content">
+      				<div class="section clearfix featured-collection__description">
+                      <h2>{{block.settings.heading}}</h2>
+                      {{block.settings.collection_content}} 	
+      				</div>
+				</div>
+               <div class="eleven columns js-product-slider homepage-product-slider full-width--true  collection-slider__products">
+                 <div class="container js-product-slider homepage-product-slider full-width--true 
+                   even-num-slides collection-slider__products">
+                  {% if section_onboarding == false %}
+                     {% if forloop.index == 1 %}
+                         {% render 'product-slider',
+                                limit: limit, products: products1,featured_collections: col1    
+                         %}
+                         {%elsif forloop.index == 2 %}
+                         {% render 'product-slider',
+                                    limit: limit, products: products2, featured_collections: col2     
+                          %}
+                         {%elsif forloop.index == 3 %}
+                         {% render 'product-slider',
+                                    limit: limit, products: products3, featured_collections: col3   
+                         %}
+                         {%elsif forloop.index == 4 %}
+                         {% render 'product-slider',
+                                    limit: limit, products: products4, featured_collections: col4  
+                         %}
+                         {%elsif forloop.index == 5 %}
+                         {% render 'product-slider',
+                                    limit: limit, products: products5, featured_collections: col5	  
+                         %}
+                         {%elsif forloop.index == 6 %}
+                         {% render 'product-slider',
+                                    limit: limit, products: products6, featured_collections: col6 			       
+                          %}
+                 	
+                      {% endif %}
+                   {% endif %}
+  			  </div>
+  			</div>
+          </div> 
+      	</li>
+       {%endfor%}
+	</ul>
+	</div>
+  <div>
+ </div>
+</div>

@@ -1,0 +1,132 @@
+<!-- SMARTRR_CUSTOMIZED_NO_AUTO_EDIT -->
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign current_selling_plan_allocation = current_variant.selected_selling_plan_allocation
+  if current_selling_plan_allocation == nil and current_variant.requires_selling_plan
+    assign current_selling_plan_allocation = current_variant.selling_plan_allocations | first
+  endif
+  assign offer = current_selling_plan_allocation | default: current_variant
+  assign filtered_selling_plan_groups = product.selling_plan_groups | where: "app_id", "4836205"
+  assign hiddenGroups = filtered_selling_plan_groups | map: "name" | where: "[hidden]"
+  assign visibleGroupsSize = filtered_selling_plan_groups.size | minus: hiddenGroups.size
+-%}
+
+{% render 'smartrr-product-styles' %}
+
+<input type="hidden" name="selling_plan" data-smartrr-selling-plan-input value="{{ current_selling_plan_allocation.selling_plan.id | default: '' }}">
+<div class="hide" data-smartrr-page-load-variant="{{ current_variant.id }}"></div>
+
+{% if visibleGroupsSize > 0 %}
+<fieldset class="smartrr-purchase-options" data-smartrr-purchase-options>
+  <div class="smartrr-no-plans-available hide" data-smartrr-no-plans>
+    No available purchase options for this selection.
+  </div>
+  <div data-smartrr-selling-plan-groups>
+    {% unless product.requires_selling_plan %}
+    <div data-smartrr-selling-plan-group-id class="smartrr-otp">
+      <div class="smartrr-selling-plan-group-header">
+        <label class="smartrr-selling-plan-group-label">
+          <input type="radio" data-smartrr-selling-plan-group-input name="purchase_option" value="">
+          <div class="smartrr-selling-plan-group-input-display"></div>
+          <div class="smartrr-selling-plan-group-name">
+            <div>One time purchase: </div>
+            <div data-smartrr-product-id="{{ product.id }}" data-smartrr-price-style="original">
+              <span data-smartrr-compare-price></span>
+              <span data-smartrr-regular-price></span>
+              <span data-smartrr-subscribe-price></span>
+            </div>
+          </div>
+        </label>
+      </div>
+      <div data-smartrr-selling-plan-group-contents class="hide"></div>
+    </div>
+    {% endunless %}
+
+    {% for group in filtered_selling_plan_groups %}
+    {% unless group.name contains "[hidden]" %}
+    <div data-smartrr-selling-plan-group-id="{{ group.id }}">
+      <div class="smartrr-selling-plan-group-header">
+        <label class="smartrr-selling-plan-group-label">
+          <input type="radio" data-smartrr-selling-plan-group-input="{{ group.id }}"
+                 name="purchase_option" value="{{ group.id }}">
+          <div class="smartrr-selling-plan-group-input-display"></div>
+          <div class="smartrr-selling-plan-group-name">
+            <div>{{ group.name }}: </div>
+            <div data-smartrr-product-id="{{ product.id }}" data-smartrr-price-style="overwrite"
+                 data-smartrr-constant="{{ group.id }}">
+              <span data-smartrr-compare-price></span>
+              <span data-smartrr-regular-price></span>
+              <span data-smartrr-subscribe-price></span>
+            </div>
+          </div>
+        </label>
+      </div>
+      <div data-smartrr-selling-plan-group-contents="{{ group.id }}" class="hide">
+        <div data-smartrr-selling-plan-group-plans>
+          <div class="smartrr-deliver-frequency">Deliver Every</div>
+          <select data-smartrr-selling-plans-select="{{ group.id }}">
+            {% for plan in group.selling_plans %}
+            <option data-smartrr-selling-plan-select-label-input="{{ group.id }}" value="{{ plan.id }}">{{ plan.options[0].value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    {%endunless %}
+    {%endfor %}
+  </div>
+
+</fieldset>
+{% endif %}
+
+<script type="text/javascript" src="{{ 'smartrr-product-script.js' | asset_url }}"></script>
+
+{% if product.id %}
+<script>
+  if (typeof window.smartrrProductList === 'undefined') {
+    window.smartrrProductList = {};
+  }
+
+  window.smartrrProductList["{{ product.id }}"] = {
+    uniqueId: "{{ product.id }}",
+    ui: undefined,
+    logic: undefined,
+    product: {{ product|json }},
+    uiImplementDetectChange: function (ui) {
+      /* Inform the Logic handler about the variant selected when the page loads. */
+      var variantId = $(ui.$form).find('[data-smartrr-page-load-variant]').attr('data-smartrr-page-load-variant');
+      ui.logic.apiChangeVariant(variantId);
+      
+      /* Handle the variant selector on the page. In this case, it is a swatch. */
+      $(ui.$form).find('.swatch_options input').each(function (_, _in) {
+        var input = $(_in);
+        input.on("click", function() {
+          var div = input.next('div[data-id]').first();
+          ui.logic.apiChangeVariant(div.attr('data-id'));
+        })
+      });                     
+
+      /* Handle the plan selector. In this case, it is a <select> */
+      $(ui.$form).find('[data-smartrr-selling-plans-select]').on("change", function (ev) {
+        ui.logic.apiChangePlan($(ev.currentTarget).val());
+      });
+    },
+
+    uiOnPlanChange: function (ui, currentInfo) {
+       if (currentInfo.groupId && currentInfo.planId) {
+        /* Ensures the <select> option reflects the change in planId. */
+        $(ui.$form).find('[data-smartrr-selling-plans-select="'+ currentInfo.groupId +'"]').val(currentInfo.planId);
+      }
+    },
+    uiOnGroupChange: function (ui, currentInfo) { },
+    uiOnVariantChange: function (ui, currentInfo) { },
+
+    uiGetQuantity: function (ui) {
+      return 1;
+    }
+  };
+                            
+
+  window.initSmartrr && window.initSmartrr("{{ product.id }}");
+</script>
+{% endif %}

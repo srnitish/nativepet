@@ -1,0 +1,18 @@
+{% comment %}Managed by ShopSheriff Shopify app{% endcomment %}
+
+{% if template == 'article' %}
+  {% assign denyAmp = true %}
+  {% for tag in article.tags %}
+  {% if tag == 'AMP' %}
+  {% assign denyAmp = false %}
+  {% endif %}
+  {% endfor %}
+  
+  {% assign amp_path = '' | append: article.url %}
+{% endif %}
+<script type="text/javascript">var _0x10a5=['shopsheriff.amp-snippet.end','performance','mark','shopsheriff.amp-snippet.start','/cart','referrer','includes','ampproject.org','/a/s/','location','search','origin','utm_source=shopsheriff&utm_medium=amp&utm_campaign=shopsheriff&utm_content=add-to-cart'];(function(_0x4f13c2,_0x416938){var _0x1b3f70=function(_0x57f74d){while(--_0x57f74d){_0x4f13c2['push'](_0x4f13c2['shift']());}};_0x1b3f70(++_0x416938);}(_0x10a5,0x1d5));var _0x2af5=function(_0x5cb310,_0x19fc30){_0x5cb310=_0x5cb310-0x0;var _0x1623b7=_0x10a5[_0x5cb310];return _0x1623b7;};var a=window[_0x2af5('0x0')]&&window[_0x2af5('0x0')]['mark'];if(a){window[_0x2af5('0x0')][_0x2af5('0x1')](_0x2af5('0x2'));}var doc=document;var redirect=_0x2af5('0x3')===window['location']['pathname']&&(doc[_0x2af5('0x4')][_0x2af5('0x5')](_0x2af5('0x6'))||doc[_0x2af5('0x4')]['includes'](_0x2af5('0x7')))&&!doc[_0x2af5('0x8')][_0x2af5('0x9')][_0x2af5('0x5')]('utm');if(redirect){var f=doc[_0x2af5('0x8')][_0x2af5('0x9')]?'&':'?';window[_0x2af5('0x8')]=window[_0x2af5('0x8')][_0x2af5('0xa')]+window[_0x2af5('0x8')]['pathname']+f+_0x2af5('0xb');}if(a){window['performance'][_0x2af5('0x1')](_0x2af5('0xc'));}</script>
+{% unless denyAmp %}
+{% if amp_path %}
+   <link rel="amphtml" href="{{ 'https://' | append: 'nativepet.com/a/s' | append: amp_path  }}">
+{% endif %}
+{% endunless %}

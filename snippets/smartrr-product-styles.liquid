@@ -1,0 +1,188 @@
+<!-- SMARTRR_CUSTOMIZED_NO_AUTO_EDIT -->
+{%- liquid
+  assign filtered_selling_plan_groups = product.selling_plan_groups | where: "app_id", "4836205"
+-%}
+<style>
+  [data-smartrr-subscribe-price] {
+  color: #0e498c!important;
+    padding-left: 10px;
+    font-size: 16px!important;
+    font-weight: 100;
+  }
+  .smartrr-deliver-frequency {
+    line-height: 2.2!important;
+    color: #0e498c!important;
+    font-size: 16px!important;
+    font-weight: 100;
+    font-family: Airo,serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    text-transform: uppercase;
+    padding-right: 10px;
+  }
+  [data-smartrr-selling-plans-select] {
+    width:60%;
+  	margin-bottom: 0;
+    vertical-align: middle;
+    color: #0e498c!important;
+    font-size: 16px!important;
+    font-weight: 100;
+    font-family: Airo,serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    display: initial;
+  }
+  [data-smartrr-selling-plan-group-plans] {
+    display:flex;
+    align-items: center;
+  }
+  /*  radio  */
+  [data-smartrr-selling-plan-group-input] {
+    position: absolute;
+    left: -9999px;
+  }
+  [data-smartrr-selling-plan-group-input] + .smartrr-selling-plan-group-input-display {
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    height: 12px;
+    display: inline-block;
+    color: #0e498c;
+  }
+  [data-smartrr-selling-plan-group-input] + .smartrr-selling-plan-group-input-display:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #609ed5;
+    border-radius: 100%;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  [data-smartrr-selling-plan-group-input] + .smartrr-selling-plan-group-input-display:after {
+    content: '';
+    background: #609ed5;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 3px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  [data-smartrr-selling-plan-group-input]:checked + .smartrr-selling-plan-group-input-display:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  /* end radio */
+
+.smartrr-new-price-container {
+  display: inline-flex !important;
+  align-items: center;
+  column-gap: 0.8rem;
+  margin-left: 0.4rem;
+}
+  
+.smartrr-new-price-container.hide {
+  display: none !important;
+}
+
+.smartrr-new-price {
+  font-weight: 600;
+}
+
+.smartrr-new-price-subscription-discount {
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid;
+  text-transform: uppercase;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.4rem;
+}
+  
+.smartrr-new-price-subscription-discount.hide {
+  display: none;
+}
+
+.smartrr-new-price-subscription-discount:empty {
+  display: none;
+}
+
+form .hide {
+  display: none;
+}
+
+form .smartrr-purchase-options {
+  border: none;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+form .smartrr-selling-plan-group {
+  display: flex;
+  flex-direction: column;
+  column-gap: 0.4rem;
+  padding-top: 0.2rem;
+}
+
+form .smartrr-selling-plan-group-header {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 0.2rem;
+}
+
+form .smartrr-selling-plan-group-label {
+  text-transform: uppercase!important;
+  font-size: 16px!important;
+  font-weight: 100;
+  color: #0e498c!important;
+  line-height: 2.5!important;
+  cursor: pointer;
+}
+
+form .smartrr-selling-plan-group-input {
+  min-height: 0;
+}
+
+form .smartrr-selling-plans-single-display {
+  margin-left: 0.2rem;
+}
+
+form .smartrr-selling-plan-group-contents {
+  {% if filtered_selling_plan_groups.size <= 1 %}
+    margin-left: 1rem;
+  {% else %}
+    margin-left: 0;
+  {% endif %}
+}
+
+form .smartrr-selling-plan-group-input:disabled {
+  opacity: 0.7;
+}
+
+.smartrr-selling-plan-group-name {
+  display: inline-flex;
+  align-items: center;
+}
+
+form .smartrr-selling-plan-group-input:disabled + .smartrr-selling-plan-group-name {
+  opacity: 0.65;
+}
+
+{% if product.requires_selling_plan and filtered_selling_plan_groups.size <= 1 %}
+  form .smartrr-selling-plan-group-plans {
+    margin-left: 0;
+  }
+
+  .smartrr-selling-plan-group-input {
+    display: none;
+  }
+{% endif %}
+</style>

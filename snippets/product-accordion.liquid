@@ -1,0 +1,156 @@
+<div class="ac-container">
+	
+	{% unless product.metafields.global.dropdown_one_title == blank %}
+		<div class="accordion-toggle">
+		  <label for="ac-1">{{product.metafields.global.dropdown_one_title}}</label>
+		  <article class="toggle-one">
+		    <p>{{product.metafields.global.dropdown_one_content}}</p>
+		  </article>
+		</div>
+	{% endunless %}
+	
+	{% unless product.metafields.global.dropdown_two_title == blank %}
+		<div class="accordion-toggle">
+		  <label for="ac-2">{{product.metafields.global.dropdown_two_title}}</label>
+		  <article class="toggle-two">
+		    <p>{{product.metafields.global.dropdown_two_content}}</p>
+		  </article>
+		</div>
+	{% endunless %}
+	
+	{% unless product.metafields.global.dropdown_three_title == blank %}
+		<div class="accordion-toggle">
+		  <label for="ac-3">{{product.metafields.global.dropdown_three_title}}</label>
+		  <article class="toggle-three">
+		    <p>{{product.metafields.global.dropdown_three_content}}</p>
+		  </article>
+		</div>
+	{% endunless %}
+	
+	{% unless product.metafields.global.dropdown_four_title == blank %}
+		<div class="accordion-toggle">
+		  <label for="ac-4">{{product.metafields.global.dropdown_four_title}}</label>
+		  <article class="toggle-four">
+		    <p>{{product.metafields.global.dropdown_four_content}}</p>
+		  </article>
+		</div>
+	{% endunless %}
+	
+</div> 
+
+<script type="text/javascript">
+	var container = document.getElementsByClassName("accordion-toggle");
+	
+	for (var i = 0; i < container.length; i++) {
+		//For each element in the container array, add an onclick event.
+			container[i].onclick = function(event) {
+			this.classList.toggle('red');
+		}
+	}
+  </script>
+  
+<style>
+
+	.smart-payment-button--true .purchase-details {
+	  padding-bottom: 0px;
+	}
+
+	.accordion-toggle {
+	  flex-basis: auto;
+	  flex-grow: 1;
+	  text-align: center;
+	  border-bottom: 1px solid #0e498c !important;
+	  cursor: pointer;
+	  transition: all 0.3s ease;
+	}
+	.red {
+	  padding: 80px 0;
+	}
+
+	/* Label */
+	.ac-container {
+	  border-top: none;
+	}
+	.ac-container label {
+	  padding: 0 15px;
+	  text-transform: uppercase;
+	  font-weight: 400;
+	  line-height: 2;
+	  padding: 10px 5px;
+	  display: block;
+	  cursor: pointer;
+	  text-transform: capitalize;
+	  font-size: 16px;
+	  position: relative;
+      margin-bottom: 0;
+	}
+	.ac-container {
+	  width: 100%;
+	  margin: 10px auto;
+	}
+	.ac-container input {
+	  display: none;
+	}
+	
+	/* Contents */
+	.ac-container article {
+	  overflow: hidden;
+	  height: 0;
+	  transition: 0.6s;
+	}
+	.ac-container article p {
+	  padding: 10px 5px;
+	  color:#0e498c !important;
+	  line-height: 1.3;
+		font-size: 16px;
+		text-align: left;
+	  margin-bottom: 0;
+	  font-weight: 100;
+	  
+	}
+	.ac-container article.openme {
+	  /* min-height: 150px;
+	  height: fit-content; */
+	  height: auto;
+	  border-top: 1px solid #a9a9a9;
+	}
+	
+	.ac-container label::after {
+	    content: '';
+	    display: block;
+	    background-image: url('https://cdn.shopify.com/s/files/1/2715/7980/files/arrow-down-blue.svg');
+	    background-size: 26px 16px;
+	    width: 26px;
+	    height: 16px;
+	    -ms-transform: translateY(-50%);
+	    transform: translateY(-50%);
+	    top: 50%;
+	  	right: 0;
+	  	position: absolute;
+	}
+	
+	.ac-container ul {
+	    margin-bottom: 0;
+	    li {
+	    	margin-bottom: 0;
+	        p {
+	          padding: 0;
+	        }
+	    }
+	}
+	.ac-container .accordion-toggle.red article {
+		height: auto;
+		overflow: auto;
+	}
+	.accordion-toggle.red {
+	    padding: 0 !important;
+	}
+	.ac-container label {
+		text-transform: uppercase;
+	    color: #0e498c !important;
+	}
+	.accordion-toggle.red {
+	    border-bottom-color: #0e498c !important;
+	    padding-bottom: 10px !important;
+	}
+</style> 

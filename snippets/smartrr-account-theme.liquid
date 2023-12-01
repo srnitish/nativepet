@@ -1,0 +1,157 @@
+{% comment %}
+  This file is maintained by Smartrr. 
+  Use the "Theming" section of the Smartrr app to configure theme settings. 
+{% endcomment %}
+<script>
+if (!window.smartrr) {
+  window.smartrr = {};
+}
+window.smartrr.theme = {
+  "overrideCSS": ".smartrr-portal-slide-panel-header .smartrr-portal-heading {\n  font-size: 18px;\n}",
+  "primaryColor": "#0e498c",
+  "secondaryColor": "#fff0df",
+  "mainContentBackgroundColor": "#fff",
+  "mainContentBorderRadius": 0,
+  "mainContentBorderColor": "#0e498c",
+  "mainContentBorderWidth": 1,
+  "loaderPrimaryColor": "#fff0df",
+  "loaderSecondaryColor": "#0e498c",
+  "bodyBackgroundColor": "#ffffff",
+  "bodyTextFontFamily": "Airo,     serif,     -apple-system,     BlinkMacSystemFont,     \"Segoe UI\",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     \"Helvetica Neue\",     sans-serif;",
+  "bodyTextFontWeight": "normal",
+  "bodyTextColor": "#0053a5",
+  "heading1TextFontFamily": "Airo,     serif,     -apple-system,     BlinkMacSystemFont,     \"Segoe UI\",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     \"Helvetica Neue\",     sans-serif;",
+  "heading1TextFontSize": 20,
+  "heading1FontWeight": "bolder",
+  "heading1TextColor": "#0e498c",
+  "heading2TextFontFamily": "Airo,     serif,     -apple-system,     BlinkMacSystemFont,     \"Segoe UI\",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     \"Helvetica Neue\",     sans-serif;",
+  "heading2TextFontSize": 15,
+  "heading2FontWeight": "normal",
+  "heading2TextColor": "#0e498c",
+  "heading3TextFontFamily": "Airo,     serif,     -apple-system,     BlinkMacSystemFont,     \"Segoe UI\",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     \"Helvetica Neue\",     sans-serif;",
+  "heading3TextFontSize": 15,
+  "heading3FontWeight": "normal",
+  "heading3TextColor": "#0e498c",
+  "heading4TextFontFamily": "Airo,     serif,     -apple-system,     BlinkMacSystemFont,     \"Segoe UI\",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     \"Helvetica Neue\",     sans-serif;",
+  "heading4TextFontSize": 13,
+  "heading4FontWeight": "normal",
+  "heading4TextColor": "#0e498c",
+  "buttonBackgroundColor": "#0e498c",
+  "buttonFontFamily": "Airo,serif,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;",
+  "buttonFontSize": 15,
+  "buttonFontWeight": "normal",
+  "buttonTextColor": "#fff",
+  "buttonBorderRadius": 0,
+  "buttonBorderColor": "#0e498c",
+  "buttonBorderWidth": 0,
+  "dropdownBackgroundColor": "#0e498c",
+  "dropdownTextColor": "#fff",
+  "dropdownBorderRadius": 0,
+  "dropdownBorderColor": "#0e498c",
+  "dropdownBorderWidth": 0,
+  "dropdownFontFamily": "Airo,     serif,     -apple-system,     BlinkMacSystemFont,     \"Segoe UI\",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     \"Helvetica Neue\",     sans-serif;",
+  "dropdownFontSize": 15,
+  "dropdownFontWeight": "normal",
+  "smallProductImageBorderRadius": 12,
+  "mediumProductImageBorderRadius": 14,
+  "largeProductImageBorderRadius": 16,
+  "purchasableThemes": []
+}
+</script>
+
+<style>
+body {
+  background-color: #ffffff;
+  transition: background-color .15s ease-in-out;
+}
+
+#smartrr_account,
+#smartrr_slide_panel,
+#smartrr_toast_container {
+  box-sizing: border-box;
+
+  color: #0053a5;
+  font-family: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+  font-weight: normal;
+  background-color: #ffffff;
+  transition: background-color .15s ease-in-out, color .15s ease-in-out;
+}
+
+#smartrr_account *,
+#smartrr_account *:before,
+#smartrr_account *:after,
+#smartrr_slide_panel *,
+#smartrr_slide_panel *:before,
+#smartrr_slide_panel *:after,
+#smartrr_toast_container *,
+#smartrr_toast_container *:before,
+#smartrr_toast_container *:after {
+  box-sizing: border-box;
+}
+
+#smartrr_toast_container {
+  z-index: 10000001;
+}
+
+#smartrr_toast_container .Toastify__toast-container {
+  z-index: 10000002;
+}
+
+.hide-in-customer-portal {
+  display: none;
+}
+
+#smartrr_account,
+#smartrr_slide_panel,
+#smartrr_toast_container {
+  
+--smartrr-primaryColor: #0e498c;
+--smartrr-secondaryColor: #fff0df;
+--smartrr-mainContentBackgroundColor: #fff;
+--smartrr-mainContentBorderRadius: 0px;
+--smartrr-mainContentBorderColor: #0e498c;
+--smartrr-mainContentBorderWidth: 1px;
+--smartrr-loaderPrimaryColor: #fff0df;
+--smartrr-loaderSecondaryColor: #0e498c;
+--smartrr-bodyBackgroundColor: #ffffff;
+--smartrr-bodyTextFontFamily: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+--smartrr-bodyTextFontWeight: normal;
+--smartrr-bodyTextColor: #0053a5;
+--smartrr-heading1TextFontFamily: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+--smartrr-heading1TextFontSize: 20px;
+--smartrr-heading1FontWeight: bolder;
+--smartrr-heading1TextColor: #0e498c;
+--smartrr-heading2TextFontFamily: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+--smartrr-heading2TextFontSize: 15px;
+--smartrr-heading2FontWeight: normal;
+--smartrr-heading2TextColor: #0e498c;
+--smartrr-heading3TextFontFamily: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+--smartrr-heading3TextFontSize: 15px;
+--smartrr-heading3FontWeight: normal;
+--smartrr-heading3TextColor: #0e498c;
+--smartrr-heading4TextFontFamily: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+--smartrr-heading4TextFontSize: 13px;
+--smartrr-heading4FontWeight: normal;
+--smartrr-heading4TextColor: #0e498c;
+--smartrr-buttonBackgroundColor: #0e498c;
+--smartrr-buttonTextColor: #fff;
+--smartrr-buttonFontFamily: Airo,serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;;
+--smartrr-buttonFontSize: 15px;
+--smartrr-buttonFontWeight: normal;
+--smartrr-buttonBorderRadius: 0px;
+--smartrr-dropdownBackgroundColor: #0e498c;
+--smartrr-dropdownTextColor: #fff;
+--smartrr-dropdownFontFamily: Airo,     serif,     -apple-system,     BlinkMacSystemFont,     "Segoe UI",     Roboto,     Oxygen-Sans,     Ubuntu,     Cantarell,     "Helvetica Neue",     sans-serif;;
+--smartrr-dropdownFontSize: 15px;
+--smartrr-dropdownFontWeight: normal;
+--smartrr-dropdownBorderRadius: 0px;
+--smartrr-buttonBorderColor: #0e498c;
+--smartrr-buttonBorderWidth: 0px;
+--smartrr-dropdownBorderColor: #0e498c;
+--smartrr-dropdownBorderWidth: 0px;
+--smartrr-smallProductImageBorderRadius: 12px;
+--smartrr-mediumProductImageBorderRadius: 14px;
+--smartrr-largeProductImageBorderRadius: 16px;
+}
+
+</style>

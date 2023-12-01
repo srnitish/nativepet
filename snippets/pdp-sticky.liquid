@@ -1,0 +1,241 @@
+<style>
+    .fixed-sticky {
+        position: fixed;
+        top: 100px;
+        width: 100%;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.7) !important;
+        opacity: 0;
+        transition: all 300ms ease;
+        transform: translateY(-50%)
+    }
+
+    .fixed-sticky.visible {
+        opacity: 1;
+        transform: translateY(0%)
+    }
+
+    .fixed-sticky .container {
+        width: calc(100% - 80px)
+    }
+
+    .fixed-sticky form {
+        margin-bottom: 0
+    }
+
+    .fixed-sticky h5 {
+        padding: 0
+    }
+
+    .fixed-sticky .container {
+        align-items: center;
+        display: inline-flex;
+        width: 100%;
+        padding: 15px !important;
+        float: right;
+        max-width: 98vw
+    }
+
+    .fixed-sticky .add_to_cart.action_button {
+        letter-spacing: inherit;
+        font-size: 16px
+    }
+
+    .fixed-sticky .add_to_cart.action_button:hover {
+        text-decoration: none
+    }
+
+    @media only screen and (max-width: 1249px) {
+        .fixed-sticky {
+            top: 110px
+        }
+    }
+
+    .fixed-sticky.mobile.visible {
+        transform: translateY(-50%);
+        display: none
+    }
+
+    @media only screen and (max-width: 799px) {
+        .fixed-sticky {
+            top: 82px
+        }
+
+        .fixed-sticky h3,
+        .fixed-sticky h5 {
+            font-size: 16px
+        }
+
+        .fixed-sticky .add_to_cart.action_button {
+            min-height: none
+        }
+
+        .fixed-sticky h3,
+        .fixed-sticky h5 {
+            font-size: 16px !important;
+            line-height: 1.2
+        }
+
+        .fixed-sticky .add_to_cart.action_button {
+            min-height: auto;
+            padding: 5px 15px !important;
+            width: auto;
+            float: right;
+            font-size: 14px
+        }
+
+        .action_button.action_button--secondary {
+            font-size: 16px !important
+        }
+
+        .fixed-sticky.desktop {
+            display: none
+        }
+
+        .fixed-sticky.desktop.visible {
+            transform: translateY(-50%)
+        }
+
+        .fixed-sticky.mobile.visible {
+            transform: translateY(0%);
+            display: block
+        }
+
+        .fixed-sticky .product_slider {
+            margin-bottom: 0
+        }
+    }
+
+    @media only screen and (max-width: 640px) {
+        .fixed-sticky {
+            top: 72px
+        }
+
+        .fixed-sticky .product_info {
+            width: 75%
+        }
+
+        .fixed-sticky .product_buy {
+            width: 25%
+        }
+
+        .fixed-sticky .product_buy form {
+            width: auto
+        }
+
+        .fixed-sticky .hide-small {
+            display: none
+        }
+
+        .fixed-sticky .wrap-small {
+            display: inline-flex;
+            align-items: center
+        }
+
+    }
+
+    {% comment %} ============ {% endcomment %}
+
+	.product_info {
+        width: 59%;
+	    display: inline-block;
+	    float: left;
+	}
+	.product_buy {
+	    width: 40%;
+	    float: right;
+	    display: inline-block;
+	}
+	.fixed-sticky h3 {
+		    font-family: 'Poppins';
+		    letter-spacing: 1px;
+		    text-transform: none;
+		    color: #fff;
+		    font-weight: 600;
+		    letter-spacing: normal;
+		    margin-bottom: 0;
+	}
+	.fixed-sticky h5 {
+		letter-spacing: normal;
+		font-family: 'Avenir';
+		font-weight: 900;
+		font-size: 20px;
+	}
+	.fixed-sticky h3, h5 {
+	    display: inline-block;
+	}
+	.fixed-sticky form {
+	    width: 180px;
+	    float: right;
+	}
+	.grid--full.container {
+	    padding-bottom: 0;
+	}
+	.fixed-sticky h5 {
+		color: #fff !important;
+	}
+	.fixed-sticky { background: #609ed5 !important;}
+	.fixed-sticky a.action_button.add_to_cart { background: #0e498c !important;}
+	.fixed-sticky a.action_button.add_to_cart span { color: #fff !important; }
+	.fixed-sticky a.action_button.add_to_cart h3 { color: #fff; }
+	.fixed-sticky * { font-family: "Airo",serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important; }
+	
+</style>
+
+<div class="fixed-sticky desktop">
+	<div class="grid--full container">
+		<div class="product_info">
+			<div class="wrap-small"><h3>{{ product.title }}</h3> &nbsp;<h5><span class="money">{{ product.selected_variant.price | money_without_trailing_zeros }}</h5></div>
+		</div>
+		<div class="product_buy">
+			{% if product.variants.size > 1 %}
+				<form>
+				  <a href="#shopify-section-product-template" class="action_button add_to_cart"><span class="text">Add <span class="hide-small">To Cart</span></span></a>
+				</form>
+            {% elsif product.handle contains 'candle' %}
+                <form>
+                  <a href="#shopify-section-product-template" class="action_button add_to_cart"><span class="text">Add <span class="hide-small">To Cart</span></span></a>
+                </form>
+			{% else %}
+				{% form 'product', product %}
+					{% if settings.cart_action == 'reload_page' %} 
+					<input type="hidden" name="return_to" value="back" />
+					{% elsif settings.cart_action == 'redirect_checkout' %}
+					<input type="hidden" name="return_to" value="/checkout" />
+					{% endif %}
+					{% capture add_to_cart_label %}{% if collection_handles contains 'pre-order' %}{{ 'collections.general.pre_order' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endif %}{% endcapture %}
+		        <button type="submit" name="add" class="action_button add_to_cart {% if show_payment_button %} action_button--secondary {% endif %}" data-label={{ add_to_cart_label | json }} onclick="pintrk('track', 'addtocart', {value: {{
+		product.selected_variant.price | money_without_currency}},
+		order_quantity: 1});"><span class="text">Add <span class="hide-small">To Cart</span></span></button>
+				{% endform %}
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+<div class="fixed-sticky mobile">
+	<div class="grid--full container">
+		<div class="product_info">
+			<div class="wrap-small"><h3>{{ product.title }}</h3> &nbsp;<h5><span class="money">{{ product.selected_variant.price | money_without_trailing_zeros }}</h5></div>
+		</div>
+		<div class="product_buy">
+			{% if product.variants.size > 1 %}
+				<form>
+				  <a href="#shopify-section-product-template" class="action_button add_to_cart"><span class="text">Add <span class="hide-small">To Cart</span></span></a>
+				</form>
+			{% else %}
+				{% form 'product', product %}
+					{% if settings.cart_action == 'reload_page' %}
+					<input type="hidden" name="return_to" value="back" />
+					{% elsif settings.cart_action == 'redirect_checkout' %}
+					<input type="hidden" name="return_to" value="/checkout" />
+					{% endif %}
+					{% capture add_to_cart_label %}{% if collection_handles contains 'pre-order' %}{{ 'collections.general.pre_order' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endif %}{% endcapture %}
+		        <button type="submit" name="add" class="action_button add_to_cart {% if show_payment_button %} action_button--secondary {% endif %}" data-label={{ add_to_cart_label | json }} onclick="pintrk('track', 'addtocart', {value: {{
+		product.selected_variant.price | money_without_currency}},
+		order_quantity: 1});"><span class="text">Add <span class="hide-small">To Cart</span></span></button>
+				{% endform %}
+			{% endif %}
+		</div>
+	</div>
+</div>

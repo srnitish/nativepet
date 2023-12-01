@@ -1,0 +1,25 @@
+
+<div class="yotpo bottomLine"
+    data-appkey="KAeqp523D42dvxjT7yMWjNh2xP38sN9bpAqG42Be"
+    data-domain="{{shop.permanent_domain | escape }}"
+    data-product-id="{{ product.id }}"
+    data-product-models="{{ product.id }}"
+    data-name="{{ product.title | escape }}"
+    data-url="{{ shop.url }}{{ product.url }}"
+    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+    data-description="{{ product.description | escape }}"
+    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+</div>
+
+<script>
+if (document.getElementsByClassName("write-review").length)
+{
+      document.getElementsByClassName("write-review")[0].addEventListener("click", function()
+	  {
+        if (document.querySelector(".yotpo-reviews-wrapper"))
+        {
+          window.scrollTo(0, document.querySelector(".yotpo-reviews-wrapper").offsetTop, {behavior: 'smooth'});
+        }
+      });
+}
+</script>

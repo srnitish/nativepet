@@ -1,0 +1,46 @@
+<div class="product-details">
+<!--     {% if settings.enable_shopify_collection_badges %}
+    <div class="shopify-reviews reviewsVisibility--{{settings.enable_shopify_review_comments}}">
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    </div>
+  {% endif %} -->
+  <div class="custom-stars">
+          {{ 'icon-star--filled-cust.png' | asset_url | img_tag }}
+          {{ 'icon-star--filled-cust.png' | asset_url | img_tag }}
+          {{ 'icon-star--filled-cust.png' | asset_url | img_tag }}
+          {{ 'icon-star--filled-cust.png' | asset_url | img_tag }}
+          {{ 'icon-star--filled-cust.png' | asset_url | img_tag }}
+      </div>
+   {% unless product.metafields.global.preheading == blank %}
+   <p class="preheading-slider">{{ product.metafields.global.preheading }}</p>
+   {% endunless %}
+  <span class="title" itemprop="name">{{ product.title }}</span>
+  {% if settings.display_vendor %}
+    <span class="brand">
+      {{ product.vendor | link_to_vendor }}
+    </span>
+  {% endif %}
+
+  {% if collection_handles contains 'coming-soon' %}
+    <span class="coming-soon">{{ 'collections.general.coming_soon_html' | t }}</span>
+  {% else %}
+    <span class="price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
+      {% unless product.available == false and settings.display_price == false %}
+<!--         <span class="current_price">
+          {{ product.price | money }}
+        </span> -->
+      	{% assign variant = product.selected_or_first_available_variant %}
+        <span class="was_price">
+          {% if variant.price < variant.compare_at_price %}
+            <span class="money">{% render 'price-element', price: variant.compare_at_price %}</span>
+          {% endif %}
+        </span>
+      {% endunless %}
+      <div class="sold-out">
+        {% unless product.available %}
+          {{ settings.sold_out_text }}
+        {% endunless %}
+      </div>
+    </span>
+  {% endif %}
+</div>
