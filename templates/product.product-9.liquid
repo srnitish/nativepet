@@ -1,0 +1,59 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+<script>
+  window._product = {{ product | json }};
+  {% if product.metafields.subscriptions.original_to_hidden_variant_map %}
+  window._product.metafields = {
+    original_to_hidden_variant_map: {{ product.metafields.subscriptions.original_to_hidden_variant_map | json }}
+  };
+  {% endif %}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+{%- include 'pdp-sticky' -%}
+
+{% section 'product-template' %}
+{% section 'overall-benefits-9' %}
+{% section 'image-text-9' %}
+{% section 'ingredients-9' %}
+{% section 'product-compare-9' %}
+{% section 'text-2-column-9' %}
+{% section 'perfect-for-9' %}
+{% section 'ways-to-serve-9' %}
+{% section 'reviews-9' %} 
+<script>
+  
+
+
+function calculateOff() {
+  if($(window).width() > 769){
+    var diff = (($(".pack-image").last().offset().top + $(".pack-image").last().height()) - ($(".pack-image").first().offset().top + $(".pack-image").first().height())) + parseFloat($(".pack-image").first().css('margin-top'));
+
+    if (parseInt(diff) > 1) {
+        $(".pack-image").first().css('margin-top', diff + 'px')
+    } else if (diff < -1) {
+        var diff2 = (($(".pack-image").first().offset().top + $(".pack-image").first().height()) - ($(".pack-image").last().offset().top + $(".pack-image").last().height())) + + parseFloat($(".pack-image").last().css('margin-top'));
+
+        if (parseInt(diff2) > 1) {
+            $(".pack-image").last().css('margin-top', diff2 + 'px')
+        }
+    }
+  }else{
+                $(".pack-image").css('margin-top', '0px')
+  }
+}
+  
+  $(function(){
+    calculateOff();
+//     $(window).scroll(function(){
+//       calculateOff();
+//     });
+    $(window).resize(function(){
+      calculateOff();
+    });
+  })
+</script>
+{% include 'yotpo-product-reviews' %}
+{% render 'product__structured-data' %}

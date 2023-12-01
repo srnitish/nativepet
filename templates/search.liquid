@@ -1,0 +1,18 @@
+{% comment %}
+  The contents of the search.liquid template can be found in /sections/search-template.liquid
+{% endcomment %}
+
+<div class="search-template">
+
+	<div class="page-frame container">
+		<div class="sixteen columns page clearfix">
+			  <h1 class="page-title">
+			    Search
+			  </h1>
+			  <h4>{{ search.results_count }} Results</h4>
+	
+			{% section 'search-template' %}
+		</div>
+	</div> 
+
+</div>

@@ -1,0 +1,24 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+<script>
+  window._product = {{ product | json }};
+  {% if product.metafields.subscriptions.original_to_hidden_variant_map %}
+  window._product.metafields = {
+    original_to_hidden_variant_map: {{ product.metafields.subscriptions.original_to_hidden_variant_map | json }}
+  };
+  {% endif %}
+</script>
+{%- include 'pdp-sticky' -%}
+
+{% section 'product-template' %}
+{% section 'overall-benefits-8' %}
+{% section 'image-text-8' %}
+{% section 'ingredients-8' %}
+{% section 'perfect-for-8' %}
+{% section 'ways-to-serve-8' %}
+{% section 'reviews-8' %} 
+{% include 'yotpo-product-reviews' %}
+{% render 'product__structured-data' %}
+
