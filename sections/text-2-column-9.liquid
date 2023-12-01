@@ -1,0 +1,168 @@
+{% comment %}
+Text 2 column Home
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+
+{% unless section.settings.hide_section %}
+<style>
+	.our-ways-to-serve {
+		background-color: {{ section.settings.bg_color }};
+	}
+	.divider--dotted--white {
+		border-color: #0053A5 !important;
+	}
+	.our-ways-to-serve h2 {
+		color: #0e498c !important;
+	}
+	.our-ways-to-serve .ways-to-serve-blocks .ways-to-serve-block .block-inner .block-meta h3 {
+	    font-family: "NativePetHand","Airo",serif !important;
+	    color: #0e498c !important;
+	    font-size: 1.25em !important;
+	}
+	.our-ways-to-serve .ways-to-serve-blocks .ways-to-serve-block .block-inner .block-meta p {
+/* 	    color: #609ed5 !important; */
+	    text-transform: uppercase;
+	}
+	.our-ways-to-serve::after { display: none !important; }
+  .cta-btn-home{padding: 20px 40px 20px 40px!important; color: #ffffff!important}
+  a.highlight-true{margin:0}
+</style>
+   
+   
+<section class="our-ways-to-serve two-column-text">
+    <div class="container">
+        {% if section.settings.section_title !=blank %}
+            <div class="section-title">
+                <h2>{{ section.settings.section_title }}</h2>
+            </div>
+        {% endif %}
+
+        <div class="divider divider--dotted divider--dotted--white"></div>
+        {% if section.blocks.size > 0 %}
+            <div class="ways-to-serve-blocks">
+                {% for block in section.blocks %}
+                    {% assign b = block.settings %}
+                    <div class="ways-to-serve-block {% if block.type == 'full-span' %}full{% endif %}">
+                        <div class="block-inner">
+                            {% if b.svg_url != blank %}
+                                <div class="block-thumbnail">
+                                    <img src="{{ b.svg_url | img_url:'master' }}" alt=""/>
+                                </div>
+                            {% endif %}
+
+                            <div class="block-meta">
+                                <h3 class="text-uppercase">{{ b.title }}</h3>
+
+                                <p>{{ b.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if b.button1_link != blank %}
+              <div class="center">              	
+                  <a href="{{ b.button1_link }}" class="action_button cta-btn-home first_button highlight-{{ b.button1_highlight }}">
+                    {{ b.cta-button }}
+                  </a>
+              </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>   
+    
+
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Text 2 Column",
+  "class": "ways-to-serve-section",
+  "max_blocks": 6,
+  "settings": [
+        {
+	      "type": "checkbox",
+	      "id": "hide_section",
+	      "label": "Hide section",
+	      "default": false
+	    },
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section title",
+          "default": "Section title"
+        },
+        {
+	      "type": "color",
+          "id": "bg_color",
+          "label": "Section Background Color",
+          "default": "#FFF0DF"
+        }
+  ],
+  "blocks": [
+    {
+      "type": "half-span",
+      "name": "Half Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "svg_url",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Text",
+          "default": "<p>Text area can be used for details about blog authors or general information.</p>"
+        }
+      ]
+    },
+    {
+      "type": "full-span",
+      "name": "Full Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Text",
+          "default": "<p>Text area can be used for details about blog authors or general information.</p>"
+        },
+		{
+          "type": "text",
+          "id": "cta-button",
+          "label": "First button label"
+        },
+        {
+          "type": "url",
+          "id": "button1_link",
+          "label": "First button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button1_highlight",
+          "label": "Highlight first button"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Text 2 Column Home Blocks",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

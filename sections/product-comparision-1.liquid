@@ -1,0 +1,136 @@
+{% comment %}
+** Product Comparision **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+{% unless section.settings.hide_section %}
+
+<section class="product-comparision">
+    <div class="container">
+      <div class="sixteen columns m-0 flex">
+          <div class="vs-img"> {{ 'vs.png' | asset_url | img_tag }} </div>
+          {% for block in section.blocks %}
+        
+          <div class="column product-block m-0" style="background-color: {{ block.settings.bg_color }}; color: {{ block.settings.text_color }};">
+              
+              {% if block.settings.heading != blank %}
+                <div class="product-heading" style="color: {{ block.settings.text_color }};">
+                  {{ block.settings.heading }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.ingredients != blank %}
+                  <h3 class="product-ingredient-details" style="color: {{ block.settings.text_color }};">{{ block.settings.ingredients }}</h3>
+              {% endif %}
+
+              {% if block.settings.ingredient_image != blank %}
+                <div class="block-thumbnail text-center">
+                    <img src="{{ block.settings.ingredient_image | img_url:'master' }}" alt="" style="max-width: 550px;">
+                </div>
+              {% endif %}
+            
+              <div class="product-details text-center">
+                
+                {% if block.settings.ingredients != blank %}
+                <div>{{ block.settings.made_with }}</div>
+                {% endif %}
+                
+                {% if block.settings.ingredients != blank %}
+                <div>{{ block.settings.method }}</div> 
+                {% endif %}
+                
+                {% if block.settings.ingredients != blank %}
+                <div>{{ block.settings.powered_by }}</div>
+                {% endif %}
+                
+                {% if block.settings.ingredients != blank %}
+                <div>{{ block.settings.additives }}</div>
+                {% endif %}
+              </div>
+          </div>
+          {% endfor %} 
+        
+      </div>
+    </div>
+</section>
+
+{% endunless %}
+
+
+
+{% schema %}
+{
+  "name": "Product Comparision",
+  "class": "product-comparision",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product-block",
+      "name": "Products",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "ingredient_image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "ingredients",
+          "label": "Ingredients"
+        },
+        {
+          "type": "richtext",
+          "id": "made_with",
+          "label": "Made With"
+        },
+        {
+          "type": "richtext",
+          "id": "method",
+          "label": "Method"
+        },
+        {
+          "type": "richtext",
+          "id": "powered_by",
+          "label": "Powered By"
+        },
+        {
+          "type": "richtext",
+          "id": "additives",
+          "label": "Additives"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Comparision",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

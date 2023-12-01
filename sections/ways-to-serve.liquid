@@ -1,0 +1,57 @@
+{% comment %}
+** Ways To Serve - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+{% include 'mod-ways-to-serve' %}
+
+{% schema %}
+{
+  "name": "Ways To Serve",
+  "class": "ways-to-serve-section",
+  "max_blocks": 3,
+  "settings": [
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section title",
+          "default": "Section title"
+        }
+  ],
+  "blocks": [
+    {
+      "type": "way-to-serve",
+      "name": "Way to serve",
+      "settings": [
+        {
+          "type": "url",
+          "id": "svg_url",
+          "label": "SVG URL",
+          "info": "Upload SVG icon file to [/admin/settings/Files](files) and paste link here."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Text",
+          "default": "<p>Text area can be used for details about blog authors or general information.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Ways To Serve",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

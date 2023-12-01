@@ -1,0 +1,333 @@
+{% comment %}
+** Product Comparison **
+{% endcomment %}
+
+{% unless section.settings.hide_section %}
+{% if section.settings.frontpage_grid_style == false %}
+  <div class="container">
+    <div class="sixteen columns">
+{% endif %}
+{% endunless %}
+
+{% unless section.settings.hide_section %}
+    <div class="product-comp image-with-text
+                featured_collections
+                clearfix across-{{section.settings.featured_links_per_row}} image-align--{{ section.settings.frontpage_image_position }}
+                full-width--{{ section.settings.frontpage_grid_style }} 
+                perfect-for">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <section class="featured-link--section featured-link--image section-{{ forloop.index }}" {{ block.shopify_attributes }} style="background-color: {{ block.settings.bg_color }} !important;">
+            <div class="featured-link--half block--{{ block.id }}">
+              <div class="info text-align--{{section.settings.frontpage_text_align}}">
+                <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %} class="collection_title" style="border-bottom: 5px dotted {{ block.settings.text_color }}">
+                  {{ block.settings.title }}
+                </a>
+                <div class="top-partial">
+	                {% if block.settings.text != blank %}
+	                  <div class="description" style="color: {{ block.settings.text_color }} !important;">{{ block.settings.text }}</div>
+	                {% endif %}
+	                <div class="featured-link--wrap pack-image" {% if block.settings.image_size %}style="max-width: {{ block.settings.image_size }}"{% endif %}>
+		                <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}>
+		                  {% if block.settings.image %}
+		                    {% render 'image-element',
+		                            image: block.settings.image,
+		                            alt: block.settings.image.alt,
+		                            stretch_width: true
+		                    %}
+		                  {% else %}
+		                    {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+		                    {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+		                  {% endif %}
+		                </a>
+		            </div>
+	            </div>
+	            {% if block.settings.text2 != blank %}
+                  <div class="description secondary" style="color: {{ block.settings.text_color }} !important;">{{ block.settings.text2 }}</div>
+                {% endif %}
+                {% if block.settings.button_label != blank %}
+                  <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %} class="button">
+                    {{ block.settings.button_label }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </section>
+        {% endfor %}
+      {% endif %}
+    </div>
+{% if section.settings.frontpage_grid_style == false %}
+    </div>
+  </div>
+{% endif %}
+
+
+{% comment %} Is the color set to transparent? {% endcomment %}
+{% assign bg_alpha = block.settings.bg_color | color_extract: 'alpha' %}
+
+<style>
+
+  {% for block in section.blocks %}
+    .block--{{ block.id }} {
+      background-color: {{ block.settings.bg_color }};
+    }
+
+    .block--{{ block.id }} .collection_title,
+    .block--{{ block.id }} p {
+      color: {{ block.settings.text_color }};
+    }
+
+    .block--{{ block.id }} a.button {
+      color: {{ block.settings.text_color }};
+      border-color: {{ block.settings.text_color }};
+    }
+
+    .block--{{ block.id }} a.button:hover {
+      color: {% if bg_alpha != 0 %}{{ block.settings.bg_color }}{% else %}{{ settings.shop_bg_color }}{% endif %};
+      border-color: {{ block.settings.text_color }};
+      background-color: {{ block.settings.text_color }};
+    }
+    .featured-link--half.featured-link--image {
+	    flex: 0 0 35% !important;
+	}
+    .featured-link--half {
+	    flex: 0 0 55% !important;
+    }
+    .image-with-text .featured-link--half {
+	    background: transparent;
+    }
+    .image-with-text .featured-link--section {
+	    padding: 0; 
+    }
+  {% endfor %}
+
+  {% if section.settings.frontpage_grid_style == false and section.settings.featured_links_per_row == '1' %}
+      #shopify-section-{{ section.id }} .featured-link--section {
+        margin-bottom: 3%;
+      }
+      @media only screen and (max-width: 480px) {
+        #shopify-section-{{ section.id }} .featured-link--section {
+          margin-bottom: 10%;
+        }
+      }
+
+      #shopify-section-{{ section.id }} .featured-link--half {
+        width: 45%;
+      }
+
+      #shopify-section-{{ section.id }} .featured-link--margin {
+        {% if section.settings.frontpage_image_position == 'right' %}
+          margin-left: 3%;
+        {% else %}
+          margin-left: 0;
+          margin-right: 3%;
+        {% endif %}
+      }
+
+      #shopify-section-{{ section.id }} .featured-link--section:nth-child(even) .featured-link--margin {
+        {% if section.settings.frontpage_image_position == 'right' %}
+          margin-left: 0;
+          margin-right: 3%;
+        {% else %}
+          margin-left: 3%;
+          margin-right: 0;
+        {% endif %}
+      }
+
+    {% elsif section.settings.frontpage_grid_style == false and section.settings.featured_links_per_row == '2' %}
+
+        @media only screen and (max-width: 480px) {
+          #shopify-section-{{ section.id }} .featured-link--section {
+            margin-bottom: 10%;
+          }
+        }
+
+        #shopify-section-{{ section.id }} .featured-link--margin {
+          margin-right: 0;
+          margin-left: 0;
+        }
+
+        #shopify-section-{{ section.id }} .featured-link--section:nth-child(even) .featured-link--margin {
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+      {% endif %}
+</style>
+
+{% endunless %}
+
+
+{% schema %}
+{
+  "name": "Product Compare",
+  "class": "image-with-text-section",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "frontpage_grid_style",
+      "label": "Wide display"
+    },
+    {
+      "type": "select",
+      "id": "featured_links_per_row",
+      "label": "Images per row",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "frontpage_text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "frontpage_image_position",
+      "label": "First image position",
+      "info": "Subsequent images will appear staggered",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Compare",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1024 x 1024px recommended"
+        },
+        {
+          "type": "text",
+          "id": "image_size",
+          "label": "Max Width of Image"
+        },
+        {
+          "type": "select",
+          "id": "image_crop",
+          "label": "Image cropping",
+          "default": "none",
+          "info": "Only applied when text area is taller than image.",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Your headline"
+        },
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Promotion description appears here.</p>"
+        },
+        {
+          "type": "html",
+          "id": "text2",
+          "label": "Text Area #2",
+          "default": "<p>Promotion description appears here.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "View all"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Product compare",
+    "category": "Image",
+    "settings": {
+      "featured_links_per_row": "1",
+      "frontpage_text_align": "left"
+    },
+    "blocks": [
+      {
+        "type": "image"
+      },
+      {
+        "type": "image"
+      }
+    ]
+  }]
+}
+{% endschema %}

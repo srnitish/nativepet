@@ -1,0 +1,98 @@
+{% comment %}
+** Reviews - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+
+{% unless section.settings.hide_section %}
+<section id="product-reviews" class="our-reviews">
+    <div class="container pos-relative">
+        <div class="section-title">
+            <h2>Reviews</h2>
+        </div>
+        <div class="reviews-blocks carousel" data-flickity='{ "cellAlign": "left", "contain": true, "watchCSS": true, "prevNextButtons": false}'>
+            {% if section.blocks.size > 0 %}
+              {% for block in section.blocks %}
+          		<div class="review-block">
+                    <div class="block-inner">
+                        <img data-src="{{ block.settings.image | img_url: '600x' }}" class="lazyload" />
+                        <div class="block-meta">
+                            <h3>{{ block.settings.title }}</h3>
+                            <p>{{ block.settings.text }}</p>
+                            <p>{{ block.settings.author }}</p>
+                            <div class="rating-stars">
+                                {{ 'icon-star--filled.svg' | asset_url | img_tag }}
+                                {{ 'icon-star--filled.svg' | asset_url | img_tag }}
+                                {{ 'icon-star--filled.svg' | asset_url | img_tag }}
+                                {{ 'icon-star--filled.svg' | asset_url | img_tag }}
+                                {{ 'icon-star--filled.svg' | asset_url | img_tag }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+        </div>
+        <div class="view-all-cta">
+            <a href="#reviews" class="view-all">VIEW ALL</a>
+        </div>
+    </div>
+</section>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Reviews",
+  "class": "reviews-section",
+  "settings": [ 
+	{
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Featured Review",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Featured Image",
+          "info": "600 x 400px recommended"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Lorem Ipsum doler sit amet!"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "I received a perfect bag of chews that my dogs absolutely love! This is a great product that keeps the pups interested for days. When all that's left is a little nub, microwave it for a minute or two and it puffs into a big treat that they devour in minutes. Perfect product! Thank you!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "John Doe"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Reviews",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}

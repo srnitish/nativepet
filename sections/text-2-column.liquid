@@ -1,0 +1,33 @@
+<section class="our-ways-to-serve">
+    <div class="container">
+        {% if section.settings.section_title !=blank %}
+            <div class="section-title">
+                <h2>{{ section.settings.section_title }}</h2>
+            </div>
+        {% endif %}
+
+        <div class="divider divider--dotted divider--dotted--white"></div>
+        {% if section.blocks.size > 0 %}
+            <div class="ways-to-serve-blocks">
+                {% for block in section.blocks %}
+                    {% assign b = block.settings %}
+                    <div class="ways-to-serve-block">
+                        <div class="block-inner">
+                            {% if b.svg_url != blank %}
+                                <div class="block-thumbnail">
+                                    <img src="{{ b.svg_url | img_url:'master' }}" alt=""/>
+                                </div>
+                            {% endif %}
+
+                            <div class="block-meta">
+                                <h3 class="text-uppercase">{{ b.title }}</h3>
+
+                                <p>{{ b.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>

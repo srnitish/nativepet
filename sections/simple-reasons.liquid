@@ -1,0 +1,92 @@
+{% comment %}
+** Why Choose Native Pet? - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% comment %} Dynamic Section {% endcomment %}
+
+
+<section class="overall-benefits simple-reason hp" style="background:{{ section.settings.bg_color }}; color:{{ section.settings.bg_color }}">
+    <div class="container">
+        <div class="content-box">
+            <div class="content-box__inner">
+                <h4 style="color: {{ section.settings.main_color }}">{{ section.settings.pretitle }}</h4>
+                <h3 style="color: {{ section.settings.main_color }}">{{ section.settings.title }}</h3>
+                <div style="color: {{ section.settings.main_color }} !important">{{ section.settings.description }}</div>
+            </div>
+        </div> 
+        <div class="benefits-row simple-reason" data-flickity='{ "cellAlign": "left", "contain": true, "watchCSS": true, "prevNextButtons": false}'>
+          {% for block in section.blocks %}
+	          <div class="col-4">
+                  <div class="icon-wrapper simple-reason-icons" style="color: {{ block.settings.text_color }}">
+                    <img src="{{ block.settings.icon_png | img_url:'master' }}" alt="">
+                  </div>
+                  <div style="color: {{ block.settings.text_color }} !important">{{ block.settings.benefit-title }}</div>
+              </div> 
+          {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Overall Benefits",
+  "class": "overall-benefits-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Preheading",
+      "default": "Additional Benefits"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading",
+      "default": "Why Choose Native Pet?"
+    },
+
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color"
+    },
+    {
+      "type": "color",
+      "id": "main_color",
+      "label": "Section Text Color",
+      "default": "#0053A5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit-block",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_png",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "benefit-title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Why Choose Native Pet?",
+    "category": "Content",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}
